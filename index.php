@@ -232,7 +232,7 @@ include "inc/rupiah.php";
                                     <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
                                     <p>
 
-                                        |Akun
+                                        |Akun|tes brach master
                                     </p>
                                 </a>
                             </li>
