@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 07:28 AM
+-- Generation Time: Nov 28, 2021 at 02:05 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -79,6 +79,35 @@ INSERT INTO `akun_keterangan` (`id_akun_keterangan`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bulan`
+--
+
+CREATE TABLE `bulan` (
+  `id_bulan` int(2) NOT NULL,
+  `nama_bulan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bulan`
+--
+
+INSERT INTO `bulan` (`id_bulan`, `nama_bulan`) VALUES
+(1, 'januari'),
+(2, 'februari'),
+(3, 'maret'),
+(4, 'April'),
+(5, 'Mei'),
+(6, 'Juni'),
+(7, 'Juli'),
+(8, 'Agustus'),
+(9, 'September'),
+(10, 'Oktober'),
+(11, 'november'),
+(12, 'desember');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -109,11 +138,24 @@ INSERT INTO `customer` (`CUST_ID`, `FIRST_NAME`, `LAST_NAME`, `PHONE_NUMBER`) VA
 CREATE TABLE `jurnal` (
   `id_jurnal` int(11) NOT NULL,
   `id_akun` int(11) NOT NULL,
-  `debit` int(11) NOT NULL,
-  `kredit` int(11) NOT NULL,
-  `tanggal` date NOT NULL,
+  `debit` int(11) DEFAULT NULL,
+  `kredit` int(11) DEFAULT NULL,
+  `id_bulan` int(2) NOT NULL,
+  `tanggal` int(2) NOT NULL,
   `deskripsi` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jurnal`
+--
+
+INSERT INTO `jurnal` (`id_jurnal`, `id_akun`, `debit`, `kredit`, `id_bulan`, `tanggal`, `deskripsi`) VALUES
+(1, 511, 10000, 0, 1, 1, 'membayar karyawan'),
+(2, 111, 0, 10000, 1, 1, 'membayar karyawan'),
+(3, 411, NULL, 5000, 2, 2, 'jasa dari pak pras'),
+(4, 111, 5000, NULL, 2, 2, 'jasa dari pak pras'),
+(5, 111, NULL, 3000, 2, 3, 'diambil uang untuk keperluan pribadi'),
+(6, 312, 3000, NULL, 2, 3, 'diambil uang untuk keperluan pribadi');
 
 -- --------------------------------------------------------
 
@@ -289,6 +331,12 @@ ALTER TABLE `akun_keterangan`
   ADD PRIMARY KEY (`id_akun_keterangan`);
 
 --
+-- Indexes for table `bulan`
+--
+ALTER TABLE `bulan`
+  ADD PRIMARY KEY (`id_bulan`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -299,7 +347,8 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `jurnal`
   ADD PRIMARY KEY (`id_jurnal`),
-  ADD KEY `id_akun` (`id_akun`);
+  ADD KEY `id_akun` (`id_akun`),
+  ADD KEY `id_bulan` (`id_bulan`);
 
 --
 -- Indexes for table `kas_masjid`
@@ -351,6 +400,12 @@ ALTER TABLE `tb_pengguna`
 --
 
 --
+-- AUTO_INCREMENT for table `bulan`
+--
+ALTER TABLE `bulan`
+  MODIFY `id_bulan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -360,7 +415,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kas_masjid`
@@ -412,7 +467,8 @@ ALTER TABLE `tb_pengguna`
 -- Constraints for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  ADD CONSTRAINT `jurnal_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `jurnal_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `jurnal_ibfk_2` FOREIGN KEY (`id_bulan`) REFERENCES `bulan` (`id_bulan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penjualan_tanaman`
