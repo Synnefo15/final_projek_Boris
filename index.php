@@ -221,7 +221,7 @@ include "inc/rupiah.php";
                                     <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
                                     <p>
 
-                                        |Home | test branch rafi
+                                        |Home
                                         <span class="badge badge-warning right">info</span>
                                     </p>
                                 </a>
