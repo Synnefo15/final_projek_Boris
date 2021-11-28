@@ -70,18 +70,18 @@
 
     if ($query_ubah) {
         echo "<script>
-      Swal.fire({title: 'Ubah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
-      }).then((result) => {if (result.value)
+        Swal.fire({title: 'Ubah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
+        }).then((result) => {if (result.value)
         {window.location = 'index.php?page=rekap_data_pelanggan';
         }
-      })</script>";
-      }else{
-      echo "<script>
-      Swal.fire({title: 'Ubah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
-      }).then((result) => {if (result.value)
+        })</script>";
+    }else{
+        echo "<script>
+        Swal.fire({title: 'Ubah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
+        }).then((result) => {if (result.value)
         {window.location = 'index.php?page=rekap_data_pelanggan';
         }
-      })</script>";
+        })</script>";
 	}}
 	
 	?>
