@@ -238,7 +238,7 @@ include "inc/rupiah.php";
                             </li>
 
                             <li class="nav-item">
-                                <a href="?page=#" class="nav-link">
+                                <a href="?page=data_jurnal" class="nav-link">
                                     <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
                                     <p>
 
@@ -560,6 +560,11 @@ include "inc/rupiah.php";
                                 // * Akun
                             case 'akun_data_rekap':
                                 include "bendahara/akun/data_akun.php";
+                                break;
+                                
+                                // *Jurnal
+                            case 'data_jurnal':
+                                include"bendahara/jurnal/data_jurnal.php";
                                 break;
                                 // # default
                             default:
