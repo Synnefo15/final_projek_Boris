@@ -1,0 +1,35 @@
+===alur ngoding===
+
+1) buat case (index.php). Sesuaikan dengan nama file
+
+2) buat folde N file sesuai yg dibutuhkan
+
+3) Kalo di navbar blm ada, ditambahi sesuai dengan aktor
+
+====================
+
+
+NOTE:
+1)name dipake untuk post datanya (php)
+2)id utk css & js
+
+======Part kerja========
+
+1) CRUD akun = R sdh, U,D, C
+2) CRUD jurnal umum = C, R, U, D
+3) show buku besar = 
+
+farhan = akun -> C, D
+ahsan = umum -> D, , akun -> U
+rafi = umum-.C,R,U
+
+==========================
+
+=====Alur Git control=====
+
+1)awal ngoding, pull/fetch dari main 
+2)buat branch
+3)commit branch lokal(laptop sndr)
+4)push ke branch remote(github)
+5)klo sdh siap digabung, pull req. nanti codingan baru yg dibuat, masuk ke main
+6)sudah digabung ke main, pull biar main di lokal(laptop) bs sama dengan main remote(github)
