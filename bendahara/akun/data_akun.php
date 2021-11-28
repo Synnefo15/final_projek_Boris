@@ -49,7 +49,7 @@ while ($data = $sql->fetch_assoc()) {
 
                     <?php
                     $no = 1;
-                    $sql = $koneksi->query("select * from akun order by id_akun");
+                    $sql = $koneksi->query("SELECT * from akun order by id_akun");
                     while ($data = $sql->fetch_assoc()) {
                     ?>
 

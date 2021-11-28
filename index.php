@@ -564,8 +564,13 @@ include "inc/rupiah.php";
                                 
                                 // *Jurnal
                             case 'data_jurnal':
-                                include"bendahara/jurnal/data_jurnal.php";
+                                include "bendahara/jurnal/data_jurnal.php";
                                 break;
+                            case 'data_jurnal_lihat':
+                                include "bendahara/jurnal/data_jurnal_lihat.php";
+                                break;
+
+                                
                                 // # default
                             default:
                                 echo "<center><h1> ADA KESALAHAN !</h1></center>";
