@@ -3,10 +3,11 @@ $sqlDebit = $koneksi->query("SELECT SUM(debit) FROM `jurnal`");
 while($data = $sqlDebit->fetch_assoc()){
     $jumlahDebit=$data['total debit'];
 }
-
+?>
+<?php  
 $sqlKredit = $koneksi->query("");
 while ($data=$sqlKredit->fetch_assoc()){
-    $jumlahKredit=$data['total kredit'];
+$jumlahKredit=$data['total kredit'];
 }
 ?>
 
