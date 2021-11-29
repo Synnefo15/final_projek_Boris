@@ -569,7 +569,9 @@ include "inc/rupiah.php";
                             case 'data_jurnal_lihat':
                                 include "bendahara/jurnal/data_jurnal_lihat.php";
                                 break;
-
+                            case 'add_data_jurnal':
+                                include "bendahara/jurnal/add_data_jurnal.php";
+                                break;
                                 
                                 // # default
                             default:
