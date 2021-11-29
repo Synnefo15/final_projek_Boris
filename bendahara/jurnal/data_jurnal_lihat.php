@@ -6,6 +6,26 @@
         $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     }
 ?>
+<?php  
+$sql = $koneksi->query("SELECT nama_bulan FROM `bulan` WHERE nama_bulan='".$_GET['kode']."'");
+while ($data = $sql->fetch_assoc()) {
+    $namaBulan = $data['nama_bulan'];
+}
+?>
+
+<div class="alert alert-info alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h5>
+        <i class="icon fas fa-info"></i> Jurnal Bulan :
+    </h5>
+    <h5>
+        <?php
+        echo $namaBulan;
+        ?>
+    </h5>
+
+
+</div>
 <div class=" card card-primary">
     <div class=" card-header">
         <h3 class=" card-title">
@@ -17,7 +37,7 @@
     <div class=" card-body">
         <div class=" table-responsive">
             <div>
-                <a href="?page=#" class="btn btn-primary">
+                <a href="?page=add_data_jurnal&kode=<?=$namaBulan ;?>" class=" btn btn-primary">
                     <i class="fa fa-edit m-2"></i> Tambah Data
                 </a>
             </div>
@@ -47,7 +67,7 @@
                         <td><?= rupiah($data['debit']) ; ?></td>
                         <td><?= rupiah($data['kredit']); ?></td>
                         <td>
-                            <a href="?page=#&kode=<?php echo $data['id_km']; ?>" title="Ubah"
+                            <a href=" ?page=#&kode=<?php echo $data['id_km']; ?>" title="Ubah"
                                 class="btn btn-success btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
@@ -63,6 +83,9 @@
                     ?>
                 </tbody>
             </table>
+        </div>
+        <div class=" card-footer">
+            <a href=" ?page=data_jurnal" title=" Kembali" class="btn btn-secondary">Kembali</a>
         </div>
 
     </div>
