@@ -55,7 +55,7 @@ while ($data = $sql->fetch_assoc()) {
                 <tbody>
                     <?php  
                         
-                        $sql=$koneksi->query("SELECT concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,jurn.id_akun,akun.nama_akun, jurn.debit, jurn.kredit FROM `jurnal` jurn INNER JOIN akun akun ON jurn.id_akun = akun.id_akun INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan WHERE bln.nama_bulan='".$_GET['kode']."'");
+                        $sql=$koneksi->query("SELECT id_jurnal,concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,jurn.id_akun,akun.nama_akun, jurn.debit, jurn.kredit FROM `jurnal` jurn INNER JOIN akun akun ON jurn.id_akun = akun.id_akun INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan WHERE bln.nama_bulan='".$_GET['kode']."'");
                         while ($data = $sql->fetch_assoc()) {                            
                         
                     ?>
@@ -67,11 +67,11 @@ while ($data = $sql->fetch_assoc()) {
                         <td><?= rupiah($data['debit']) ; ?></td>
                         <td><?= rupiah($data['kredit']); ?></td>
                         <td>
-                            <a href=" ?page=#&kode=<?php echo $data['id_km']; ?>" title="Ubah"
-                                class="btn btn-success btn-sm">
+                            <a href=" ?page=update_data_jurnal&kode=<?=$namaBulan?>&id_jurnal=<?=$data['id_jurnal']; ?>"
+                                title="Ubah" class="btn btn-success btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="?page=#&kode=<?php echo $data['id_km']; ?>"
+                            <a href="?page=del_data_jurnal&kode=<?=$namaBulan?>&id_jurnal=<?=$data['id_jurnal']; ?>"
                                 onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
                                 class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>

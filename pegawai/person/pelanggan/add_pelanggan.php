@@ -43,12 +43,7 @@
 
     if (isset ($_POST['Simpan'])){
 
-	//menangkap post masuk
-	// $masuk=$_POST['masuk'];
-
-	//membuang Rp dan Titik
-	// $masuk_hasil=preg_replace("/[^0-9]/", "", $masuk);
-
+	
 
     //mulai proses simpan data
         $sql_simpan = "INSERT INTO `customer`( `FIRST_NAME`, `LAST_NAME`, `PHONE_NUMBER`) VALUES (

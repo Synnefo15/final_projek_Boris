@@ -214,7 +214,7 @@ include "inc/rupiah.php";
                             </li>
 
                             <?php
-                        } elseif ($data_level == "Bendahara") {
+                        } elseif ($data_level == "Pegawai") {
                         ?>
                             <li class="nav-item">
                                 <a href="http://localhost:8080/final_projek_Boris/" class="nav-link">
@@ -435,8 +435,8 @@ include "inc/rupiah.php";
                             case 'MyApp/admin':
                                 include "home/admin.php";
                                 break;
-                            case 'bendahara':
-                                include "home/bendahara.php";
+                            case 'pegawai':
+                                include "home/pegawai.php";
                                 break;
 
                                 //Pengguna
@@ -456,121 +456,141 @@ include "inc/rupiah.php";
                                 // # Tanaman
                                 // * Tanaman penjualan
                             case 'tanaman_penjualan':
-                                include "bendahara/tanaman/penjualan/data_penjualan.php";
+                                include "pegawai/tanaman/penjualan/data_penjualan.php";
                                 break;
                             case 'i_add_km':
-                                include "bendahara/tanaman/penjualan/add_kas.php";
+                                include "pegawai/tanaman/penjualan/add_kas.php";
                                 break;
                             case 'i_edit_km':
-                                include "bendahara/tanaman/penjualan/edit_kas.php";
+                                include "pegawai/tanaman/penjualan/edit_kas.php";
                                 break;
                             case 'i_del_km':
-                                include "bendahara/tanaman/penjualan/del_kas.php";
+                                include "pegawai/tanaman/penjualan/del_kas.php";
                                 break;
 
                                 //Masjid out
                             case 'o_data_km':
-                                include "bendahara/masjid/out/data_kas.php";
+                                include "pegawai/masjid/out/data_kas.php";
                                 break;
                             case 'o_add_km':
-                                include "bendahara/masjid/out/add_kas.php";
+                                include "pegawai/masjid/out/add_kas.php";
                                 break;
                             case 'o_edit_km':
-                                include "bendahara/masjid/out/edit_kas.php";
+                                include "pegawai/masjid/out/edit_kas.php";
                                 break;
                             case 'o_del_km':
-                                include "bendahara/masjid/out/del_kas.php";
+                                include "pegawai/masjid/out/del_kas.php";
                                 break;
 
                             case 'rekap_km':
-                                include "bendahara/masjid/rekap_kas.php";
+                                include "pegawai/masjid/rekap_kas.php";
                                 break;
 
                                 //sos in
                             case 'i_data_ks':
-                                include "bendahara/sosial/in/data_kas.php";
+                                include "pegawai/sosial/in/data_kas.php";
                                 break;
                             case 'i_add_ks':
-                                include "bendahara/sosial/in/add_kas.php";
+                                include "pegawai/sosial/in/add_kas.php";
                                 break;
                             case 'i_edit_ks':
-                                include "bendahara/sosial/in/edit_kas.php";
+                                include "pegawai/sosial/in/edit_kas.php";
                                 break;
                             case 'i_del_ks':
-                                include "bendahara/sosial/in/del_kas.php";
+                                include "pegawai/sosial/in/del_kas.php";
                                 break;
 
                                 //sos out
                             case 'o_data_ks':
-                                include "bendahara/sosial/out/data_kas.php";
+                                include "pegawai/sosial/out/data_kas.php";
                                 break;
                             case 'o_add_ks':
-                                include "bendahara/sosial/out/add_kas.php";
+                                include "pegawai/sosial/out/add_kas.php";
                                 break;
                             case 'o_edit_ks':
-                                include "bendahara/sosial/out/edit_kas.php";
+                                include "pegawai/sosial/out/edit_kas.php";
                                 break;
                             case 'o_del_ks':
-                                include "bendahara/sosial/out/del_kas.php";
+                                include "pegawai/sosial/out/del_kas.php";
                                 break;
 
                             case 'rekap_ks':
-                                include "bendahara/sosial/rekap_kas.php";
+                                include "pegawai/sosial/rekap_kas.php";
                                 break;
 
                                 //lap kas mas
                             case 'lap_masjid':
-                                include "bendahara/laporan/lap_mas.php";
+                                include "pegawai/laporan/lap_mas.php";
                                 break;
                             case 'lap_sosial':
-                                include "bendahara/laporan/lap_sos.php";
+                                include "pegawai/laporan/lap_sos.php";
                                 break;
 
-                                // # ======PERSON======
+                                // & ======PERSON======
 
 
                                 // * Pelanggan
                             case 'rekap_data_pelanggan':
-                                include "bendahara/person/pelanggan/rekap_pelanggan.php";
+                                include "pegawai/person/pelanggan/rekap_pelanggan.php";
                                 break;
                             case 'person_add_pelanggan':
-                                include "bendahara/person/pelanggan/add_pelanggan.php";
+                                include "pegawai/person/pelanggan/add_pelanggan.php";
                                 break;
                             case 'person_del_pelanggan':
-                                include "bendahara/person/pelanggan/del_pelanggan.php";
+                                include "pegawai/person/pelanggan/del_pelanggan.php";
                                 break;
                             case 'person_update_pelanggan':
-                                include "bendahara/person/pelanggan/update_pelanggan.php";
+                                include "pegawai/person/pelanggan/update_pelanggan.php";
                                 break;
 
                                 // * Supplier
                             case 'rekap_data_supplier':
-                                include "bendahara/person/supplier/rekap_supplier.php";
+                                include "pegawai/person/supplier/rekap_supplier.php";
                                 break;
                             case 'person_add_supplier':
-                                include "bendahara/person/supplier/add_supplier.php";
+                                include "pegawai/person/supplier/add_supplier.php";
                                 break;
                             case 'person_del_supplier':
-                                include "bendahara/person/supplier/del_supplier.php";
+                                include "pegawai/person/supplier/del_supplier.php";
                                 break;
                             case 'person_update_supplier':
-                                include "bendahara/person/supplier/update_supplier.php";
+                                include "pegawai/person/supplier/update_supplier.php";
                                 break;
 
-                                // * Akun
+                                // & =======Akun========
                             case 'akun_data_rekap':
-                                include "bendahara/akun/data_akun.php";
+                                include "pegawai/akun/data_akun.php";
+                                break;
+                            case 'add_akun':
+                                include "pegawai/akun/add_akun.php";
+                                break;
+                            case 'del_akun':
+                                include "pegawai/akun/del_akun.php";
+                                break; 
+                            case 'update_akun':
+                                include "pegawai/akun/update_akun.php";
                                 break;
                                 
-                                // *Jurnal
+                                // & ========Jurnal========
                             case 'data_jurnal':
-                                include "bendahara/jurnal/data_jurnal.php";
+                                include "pegawai/jurnal/data_jurnal.php";
                                 break;
+                            case 'add_jurnal_noBulan':
+                                include "pegawai/jurnal/add_jurnal_noBulan.php";
+                                break;
+                                
+                                // *Jurnal detail                                
                             case 'data_jurnal_lihat':
-                                include "bendahara/jurnal/data_jurnal_lihat.php";
+                                include "pegawai/jurnal/jurnal_detail/data_jurnal_lihat.php";
                                 break;
                             case 'add_data_jurnal':
-                                include "bendahara/jurnal/add_data_jurnal.php";
+                                include "pegawai/jurnal/jurnal_detail/add_data_jurnal.php";
+                                break;
+                            case 'del_data_jurnal':
+                                include "pegawai/jurnal/jurnal_detail/del_data_jurnal.php";
+                                break;
+                            case 'update_data_jurnal':
+                                include "pegawai/jurnal/jurnal_detail/update_data_jurnal.php";
                                 break;
                                 
                                 // # default
@@ -582,8 +602,8 @@ include "inc/rupiah.php";
                         // Auto Halaman Home Pengguna
                         if ($data_level == "Administrator") {
                             include "home/admin.php";
-                        } elseif ($data_level == "Bendahara") {
-                            include "home/bendahara.php";
+                        } elseif ($data_level == "Pegawai") {
+                            include "home/pegawai.php";
                         }
                     }
                     ?>

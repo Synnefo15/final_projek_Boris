@@ -31,7 +31,7 @@ while ($data = $sql->fetch_assoc()) {
     <div class="card-body">
         <div class="table-responsive">
             <div>
-                <a href="?page=#" class="btn btn-primary">
+                <a href="?page=add_akun" class="btn btn-primary">
                     <i class="fa fa-edit m-2"></i> Tambah Data
                 </a>
             </div>
@@ -49,7 +49,7 @@ while ($data = $sql->fetch_assoc()) {
 
                     <?php
                     $no = 1;
-                    $sql = $koneksi->query("SELECT * from akun order by id_akun");
+                    $sql = $koneksi->query("SELECT * from akun INNER JOIN akun_keterangan ak ON akun.keterangan = ak.id_akun_keterangan order by id_akun");
                     while ($data = $sql->fetch_assoc()) {
                     ?>
 
@@ -68,11 +68,11 @@ while ($data = $sql->fetch_assoc()) {
 
                         </td>
                         <td>
-                            <a href="?page=person_update_pelanggan&kode=<?php echo $data['CUST_ID']; ?>" title="Ubah"
+                            <a href="?page=update_akun&id=<?=$data['id']; ?>" title="Ubah"
                                 class="btn btn-success btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="?page=person_del_pelanggan&kode=<?php echo $data['CUST_ID']; ?>"
+                            <a href="?page=del_akun&id=<?=$data['id']; ?>"
                                 onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
                                 class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
