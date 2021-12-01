@@ -248,7 +248,7 @@ include "inc/rupiah.php";
                             </li>
 
                             <li class="nav-item">
-                                <a href="?page=#" class="nav-link">
+                                <a href="?page=lihat_BB" class="nav-link">
                                     <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
                                     <p>
 
@@ -528,7 +528,6 @@ include "inc/rupiah.php";
 
                                 // & ======PERSON======
 
-
                                 // * Pelanggan
                             case 'rekap_data_pelanggan':
                                 include "pegawai/person/pelanggan/rekap_pelanggan.php";
@@ -572,13 +571,14 @@ include "inc/rupiah.php";
                                 break;
                                 
                                 // & ========Jurnal========
+                                
                             case 'data_jurnal':
                                 include "pegawai/jurnal/data_jurnal.php";
                                 break;
                             case 'add_jurnal_noBulan':
                                 include "pegawai/jurnal/add_jurnal_noBulan.php";
                                 break;
-                                
+                                                                
                                 // *Jurnal detail                                
                             case 'data_jurnal_lihat':
                                 include "pegawai/jurnal/jurnal_detail/data_jurnal_lihat.php";
@@ -591,6 +591,14 @@ include "inc/rupiah.php";
                                 break;
                             case 'update_data_jurnal':
                                 include "pegawai/jurnal/jurnal_detail/update_data_jurnal.php";
+                                break;
+
+                                // &=======Buku Besar=======
+                            case 'lihat_BB':
+                                include "pegawai/buku_besar/lihat_BB.php";
+                                break;
+                            case 'BB_detail':
+                                include "pegawai/buku_besar/BB_detail.php";
                                 break;
                                 
                                 // # default
