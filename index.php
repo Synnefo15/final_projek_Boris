@@ -565,10 +565,13 @@ include "inc/rupiah.php";
                                 include "pegawai/akun/add_akun.php";
                                 break;
                             case 'del_akun':
-                                include"pegawai/akun/del_akun.php";
+                                include "pegawai/akun/del_akun.php";
                                 break; 
+                            case 'update_akun':
+                                include "pegawai/akun/update_akun.php";
+                                break;
                                 
-                                // &Jurnal
+                                // & ========Jurnal========
                             case 'data_jurnal':
                                 include "pegawai/jurnal/data_jurnal.php";
                                 break;

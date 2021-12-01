@@ -68,11 +68,11 @@ while ($data = $sql->fetch_assoc()) {
 
                         </td>
                         <td>
-                            <a href="?page=#&kode=<?php echo $data['id_akun']; ?>" title="Ubah"
+                            <a href="?page=update_akun&id=<?=$data['id']; ?>" title="Ubah"
                                 class="btn btn-success btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="?page=del_akun&id=<?php echo $data['id_akun']; ?>"
+                            <a href="?page=del_akun&id=<?=$data['id']; ?>"
                                 onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
                                 class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
