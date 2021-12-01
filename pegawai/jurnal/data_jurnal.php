@@ -7,15 +7,15 @@
     </div>
     <div class=" card-body">
         <div class=" table-responsive">
-            <a href="?page=#" class="btn btn-primary h6">
-                <i class="fa fa-edit m-2"></i> Tambah Data Bulan
+            <a href="?page=add_jurnal_noBulan" class="btn btn-primary h6">
+                <i class="fa fa-edit m-2"></i> Tambah Data
             </a>
         </div>
         <table id="example1" class="table table-bordered table-striped m-2">
             <thead>
                 <tr>
                     <th style="width: 15px;">No</th>
-                    <th>Bulan & Tahun</th>
+                    <th>Bulan</th>
                     <th style="width: 30px;">Detail Transaksi</th>
                 </tr>
             </thead>

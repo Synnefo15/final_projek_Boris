@@ -101,7 +101,7 @@ while ($data = $sql->fetch_assoc()) {
                 class="btn btn-secondary">Batal</a>
         </div>
     </form>
-    <!-- * Data pada tanggal yang sama -->
+    <!-- * Data terbaru pada bulan yang sama -->
     <div class="card-body">
         <div class="table-responsive">
 

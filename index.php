@@ -562,15 +562,26 @@ include "inc/rupiah.php";
                                 include "pegawai/akun/data_akun.php";
                                 break;
                                 
-                                // *Jurnal
+                                // &Jurnal
                             case 'data_jurnal':
                                 include "pegawai/jurnal/data_jurnal.php";
                                 break;
+                            case 'add_jurnal_noBulan':
+                                include "pegawai/jurnal/add_jurnal_noBulan.php";
+                                break;
+                                
+                                // *Jurnal detail                                
                             case 'data_jurnal_lihat':
-                                include "pegawai/jurnal/data_jurnal_lihat.php";
+                                include "pegawai/jurnal/jurnal_detail/data_jurnal_lihat.php";
                                 break;
                             case 'add_data_jurnal':
-                                include "pegawai/jurnal/add_data_jurnal.php";
+                                include "pegawai/jurnal/jurnal_detail/add_data_jurnal.php";
+                                break;
+                            case 'del_data_jurnal':
+                                include "pegawai/jurnal/jurnal_detail/del_data_jurnal.php";
+                                break;
+                            case 'update_data_jurnal':
+                                include "pegawai/jurnal/jurnal_detail/update_data_jurnal.php";
                                 break;
                                 
                                 // # default
