@@ -526,7 +526,7 @@ include "inc/rupiah.php";
                                 include "pegawai/laporan/lap_sos.php";
                                 break;
 
-                                // # ======PERSON======
+                                // & ======PERSON======
 
 
                                 // * Pelanggan
@@ -557,10 +557,16 @@ include "inc/rupiah.php";
                                 include "pegawai/person/supplier/update_supplier.php";
                                 break;
 
-                                // * Akun
+                                // & =======Akun========
                             case 'akun_data_rekap':
                                 include "pegawai/akun/data_akun.php";
                                 break;
+                            case 'add_akun':
+                                include "pegawai/akun/add_akun.php";
+                                break;
+                            case 'del_akun':
+                                include"pegawai/akun/del_akun.php";
+                                break; 
                                 
                                 // &Jurnal
                             case 'data_jurnal':
