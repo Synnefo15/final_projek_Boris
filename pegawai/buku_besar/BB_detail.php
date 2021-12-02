@@ -12,7 +12,10 @@
 
 <!-- * Jumlah Akun tersedia -->
 <?php 
-    $sql = $koneksi->query("SELECT COUNT(DISTINCT akun.nama_akun) as jumlah, bulan.nama_bulan FROM `jurnal` INNER JOIN akun ON jurnal.id_akun = akun.id_akun INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan
+    $sql = $koneksi->query("SELECT COUNT(DISTINCT akun.nama_akun) as jumlah, 
+    bulan.nama_bulan FROM `jurnal` 
+    INNER JOIN akun ON jurnal.id_akun = akun.id_akun 
+    INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan
     WHERE bulan.nama_bulan = '".$_GET['bulan']."' ");
     while ($data = $sql->fetch_assoc()) {
         $jumlahAkun = $data['jumlah'];
@@ -33,12 +36,28 @@
 
 
 </div>
+<div class=" card card-secondary">
+    <div class=" card-title bg-secondary">
+        <h2 class=" card-title align-content-center" style=" font-size: 25px;"><?= $_GET['bulan']; ?></h2>
+
+    </div>
+
+</div>
 
 <div class=" row">
     <?php  
         $sql = $koneksi->query("SELECT DISTINCT(akun.nama_akun) as nama_akun
         ,SUM(jurnal.debit) as debit
-        ,SUM(jurnal.kredit) as kredit        
+        ,SUM(jurnal.kredit) as kredit,
+        bulan.nama_bulan,
+        (CASE
+            WHEN SUM(jurnal.debit) > SUM(jurnal.kredit) THEN SUM(jurnal.debit)-SUM(jurnal.kredit)                         
+            
+        END) as saldo_debit,
+        (CASE                            
+            WHEN SUM(jurnal.debit) < SUM(jurnal.kredit) THEN SUM(jurnal.kredit)-SUM(jurnal.debit)
+            
+        END) as saldo_kredit                
         FROM `jurnal` 
         INNER JOIN akun ON jurnal.id_akun = akun.id_akun 
         INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan 
@@ -46,6 +65,8 @@
         while ($data = $sql->fetch_assoc()){
             $sumDebit = $data['debit'];
             $sumKredit = $data['kredit'];
+            $saldoDebit=$data['saldo_debit'];
+            $saldoKredit=$data['saldo_kredit'];
         
     ?>
     <!-- * kotak warna -->
@@ -58,19 +79,18 @@
                 <h6>Kredit
                     <?php echo rupiah($sumKredit); ?>
                 </h6>
-                <a href="" class=" text-white" title="Detail <?=$data['nama_akun']?> ">
-                    <h3 class=" text-center text-bold"><?= $data['nama_akun']; ?></h3>
-                </a>
+                <h3 class=" text-center text-bold"><?= $data['nama_akun']; ?></h3>
+                <h6>Saldo Debit : <?= rupiah($saldoDebit); ?></h6>
+                <h6>Saldo Kredit : <?= rupiah($saldoKredit); ?></h6>
             </div>
-            <?php  
-            // }
-            ?>
+
 
             <div class=" icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <input type="submit" name="Detail" value="Detail" class="btn btn-success">
-            <a href="?page=#" class="small-box-footer">Selengkapnya
+
+            <a href="?page=BB_detail_akun&bulan=<?=$data['nama_bulan']?>&akun=<?=$data['nama_akun'];?>"
+                class="small-box-footer">Selengkapnya
                 <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -78,64 +98,5 @@
     <?php
     }  
     ?>
-
-</div>
-
-<?php  
-    
-?>
-
-<div class=" card card-primary">
-    <div class=" card-header">
-        <h3 class=" card-title">
-            <i class="fa fa-table"></i> Buku Besar Si Boris
-
-        </h3>
-    </div>
-
-    <div class=" card-body">
-        <div class=" table-responsive">
-
-            <table id="example1" class="table table-bordered table-striped m-2">
-                <thead class=" text-center">
-                    <tr>
-                        <th rowspan="2">Tanggal</th>
-                        <th rowspan="2">Debit </th>
-                        <th rowspan="2">Kredit </th>
-                        <th colspan="2">Saldo</th>
-                    </tr>
-                    <tr>
-                        <th>Debit</th>
-                        <th>Kredit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php  
-                        
-                        $sql=$koneksi->query("SELECT id_jurnal,concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal, jurn.debit, jurn.kredit FROM `jurnal` jurn INNER JOIN akun akun ON jurn.id_akun = akun.id_akun INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan WHERE bln.nama_bulan='".$_GET['bulan']."'");
-                        while ($data = $sql->fetch_assoc()) {                            
-                        
-                    ?>
-                    <tr>
-
-                        <td><?= $data['tanggal']; ?></td>
-                        <td><?= rupiah($data['debit']) ; ?></td>
-                        <td><?= rupiah($data['kredit']); ?></td>
-                        <td>a</td>
-                        <td>b</td>
-                    </tr>
-
-                    <?php  
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <div class=" card-footer">
-            <a href=" ?page=#" title=" Kembali" class="btn btn-secondary">Kembali</a>
-        </div>
-
-    </div>
-
 
 </div>
