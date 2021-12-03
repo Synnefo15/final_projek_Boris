@@ -25,7 +25,7 @@
                 <label for="" class="col-sm-2 col-form-label">Keterangan</label>
 
                 <select class=" col-sm-5 p-2 ml-2 btn btn-success dropdown-toggle" type="button" id="keterangan"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="keterangan">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="keterangan" required>
 
                     <option value="" disabled selected>---Pilih Keterangan---</option>
                     <?php $sql = "SELECT * FROM akun_keterangan";
@@ -54,35 +54,36 @@
 
 <?php
 
-    if (isset ($_POST['Simpan'])){
+if (isset($_POST['Simpan'])) {
 
-	
+
 
     //mulai proses simpan data
-        $sql_simpan = "INSERT INTO `akun`( id_akun,`nama_akun`, `keterangan`) VALUES (
-        '".$_POST['id_akun']."',    
-        '".$_POST['nama_akun']."',
-        '".$_POST['keterangan']."')";
-        $query_simpan = mysqli_query($koneksi, $sql_simpan);
-        mysqli_close($koneksi);
+    $sql_simpan = "INSERT INTO `akun`( id_akun,`nama_akun`, `keterangan`) VALUES (
+        '" . $_POST['id_akun'] . "',    
+        '" . $_POST['nama_akun'] . "',
+        '" . $_POST['keterangan'] . "')";
+    $query_simpan = mysqli_query($koneksi, $sql_simpan);
+    mysqli_close($koneksi);
 
     if ($query_simpan) {
-      echo "<script>
+        echo "<script>
       Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
       }).then((result) => {if (result.value){
           window.location = 'index.php?page=akun_data_rekap';
           }
       })</script>";
-      }else{
-      echo "<script>
+    } else {
+        echo "<script>
       Swal.fire({title: 'Tambah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
       }).then((result) => {if (result.value){
           window.location = 'index.php?page=akun_data_rekap';
           }
       })</script>";
-    }}
-	 //selesai proses simpan data
-	 ?>
+    }
+}
+//selesai proses simpan data
+?>
 
 <script type="text/javascript">
 

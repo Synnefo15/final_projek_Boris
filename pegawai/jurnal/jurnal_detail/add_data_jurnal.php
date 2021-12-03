@@ -47,7 +47,7 @@ while ($data = $sql->fetch_assoc()) {
                 <label for="" class="col-sm-2 col-form-label">Nama Akun</label>
 
                 <select class=" col-sm-5 p-2 ml-2 btn btn-success dropdown-toggle" type="button" id="id_akun"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="id_akun">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="id_akun" required>
                     Pilih Lokasi
                     <option value="" disabled selected>---Pilih Akun---</option>
                     <?php $sql = "SELECT * FROM akun";
@@ -55,7 +55,7 @@ while ($data = $sql->fetch_assoc()) {
                     while ($data = mysqli_fetch_array($kueri)) {
 
                     ?>
-                    <option value="<?= $data['0']; ?>"><?= $data['1']; ?></option>
+                    <option value="<?= $data['1']; ?>"><?= $data['2']; ?></option>
                     <?php
                     }
                     ?>
@@ -86,7 +86,7 @@ while ($data = $sql->fetch_assoc()) {
                 <label class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                        placeholder="Uraian Transaksi">
+                        placeholder="Uraian Transaksi" required>
                 </div>
             </div>
 
@@ -108,18 +108,27 @@ while ($data = $sql->fetch_assoc()) {
             <table id="example1" class="table table-bordered table-striped m-2">
                 <thead>
                     <tr>
-                        <th>Tanggal</th>
-                        <th>Id akun </th>
-                        <th>Nama akun </th>
-                        <th>Debit </th>
-                        <th>Kredit </th>
+                        <th style="width:20px">Tanggal</th>
+                        <th style="width:20px">Id akun </th>
+                        <th style="width:105px">Nama akun </th>
+                        <th style="width:90px">Debit </th>
+                        <th style="width:90px">Kredit </th>
+                        <th>Deskripsi</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php
 
-                    $sql = $koneksi->query("SELECT concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,jurn.id_akun,akun.nama_akun, jurn.debit, jurn.kredit FROM `jurnal` jurn INNER JOIN akun akun ON jurn.id_akun = akun.id_akun INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan WHERE bln.nama_bulan='" . $_GET['kode'] . "' ORDER BY jurn.id_jurnal DESC LIMIT 6 ");
+                    $sql = $koneksi->query("SELECT concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,
+                    jurn.id_akun,akun.nama_akun, 
+                    jurn.debit, jurn.kredit,
+                    jurn.deskripsi
+                    FROM `jurnal` jurn 
+                    INNER JOIN akun akun ON jurn.id_akun = akun.id_akun 
+                    INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan
+                    WHERE bln.nama_bulan='" . $_GET['kode'] . "' 
+                    ORDER BY jurn.id_jurnal DESC LIMIT 6 ");
                     while ($data = $sql->fetch_assoc()) {
 
                     ?>
@@ -130,6 +139,7 @@ while ($data = $sql->fetch_assoc()) {
                         <td><?= $data['nama_akun']; ?></td>
                         <td><?= rupiah($data['debit']); ?></td>
                         <td><?= rupiah($data['kredit']); ?></td>
+                        <td><?= $data['deskripsi']; ?></td>
 
                     </tr>
                     <?php

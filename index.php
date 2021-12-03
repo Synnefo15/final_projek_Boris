@@ -268,7 +268,7 @@ include "inc/rupiah.php";
                             </li>
 
                             <li class="nav-item">
-                                <a href="?page=akun_data_rekap" class="nav-link">
+                                <a href="?page=#" class="nav-link">
                                     <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
                                     <p>
 
@@ -318,6 +318,12 @@ include "inc/rupiah.php";
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="?page=daftar_tanaman" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-success"></i>
+                                            <p>Daftar Tanaman</p>
+                                        </a>
+                                    </li>
                                     <li class="nav-item">
                                         <a href="?page=tanaman_penjualan" class="nav-link">
                                             <i class="nav-icon far fa-circle text-success"></i>
@@ -458,15 +464,22 @@ include "inc/rupiah.php";
                             case 'tanaman_penjualan':
                                 include "pegawai/tanaman/penjualan/data_penjualan.php";
                                 break;
-                            case 'i_add_km':
-                                include "pegawai/tanaman/penjualan/add_kas.php";
+                                
+                                // *List Tanaman
+                            case 'daftar_tanaman':
+                                include "pegawai/tanaman/list_tanaman/daftar_tanaman.php";
                                 break;
-                            case 'i_edit_km':
-                                include "pegawai/tanaman/penjualan/edit_kas.php";
-                                break;
-                            case 'i_del_km':
-                                include "pegawai/tanaman/penjualan/del_kas.php";
-                                break;
+
+                                
+                            // case 'i_add_km':
+                            //     include "pegawai/tanaman/penjualan/add_kas.php";
+                            //     break;
+                            // case 'i_edit_km':
+                            //     include "pegawai/tanaman/penjualan/edit_kas.php";
+                            //     break;
+                            // case 'i_del_km':
+                            //     include "pegawai/tanaman/penjualan/del_kas.php";
+                            //     break;
 
                                 //Masjid out
                             case 'o_data_km':

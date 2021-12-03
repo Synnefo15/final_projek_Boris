@@ -1,10 +1,10 @@
 <?php
 
-    if(isset($_GET['id'])){
-        $sql_cek = "SELECT * FROM akun INNER JOIN akun_keterangan ak ON akun.keterangan = ak.id_akun_keterangan  WHERE id='".$_GET['id']."'";
-        $query_cek = mysqli_query($koneksi, $sql_cek);
-        $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
-    }
+if (isset($_GET['id'])) {
+    $sql_cek = "SELECT * FROM akun INNER JOIN akun_keterangan ak ON akun.keterangan = ak.id_akun_keterangan  WHERE id='" . $_GET['id'] . "'";
+    $query_cek = mysqli_query($koneksi, $sql_cek);
+    $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
+}
 ?>
 
 <div class=" card card-header">
@@ -23,7 +23,7 @@
                 <label class="col-sm-2 col-form-label">ID akun</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="id_akun" name="id_akun"
-                        value="<?php echo $data_cek['id_akun']; ?>" />
+                        value="<?php echo $data_cek['id_akun']; ?>" required />
                 </div>
             </div>
 
@@ -31,24 +31,24 @@
                 <label class="col-sm-2 col-form-label">Nama Akun</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="nama_akun" name="nama_akun"
-                        value="<?php echo $data_cek['nama_akun']; ?>" />
+                        value="<?php echo $data_cek['nama_akun']; ?>" required />
                 </div>
             </div>
 
             <select class=" col-sm-5 p-2 ml-2 btn btn-success dropdown-toggle" type="button" id="keterangan"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="keterangan"
-                style="color: white; ">
+                style="color: white; " required>
 
-                <option value="<?=$data_cek['id_akun_keterangan']?>" selected><?= $data_cek['keterangan']; ?></option>
+                <option value="<?= $data_cek['id_akun_keterangan'] ?>" selected><?= $data_cek['keterangan']; ?></option>
                 <?php $sql = "SELECT * FROM akun_keterangan";
-                    $kueri = mysqli_query($koneksi, $sql);
-                    while ($data = mysqli_fetch_array($kueri)) {
+                $kueri = mysqli_query($koneksi, $sql);
+                while ($data = mysqli_fetch_array($kueri)) {
 
-                    ?>
+                ?>
                 <option value=" <?= $data['0']; ?>"><?= $data['1']; ?></option>
                 <?php
-                    }
-                    ?>
+                }
+                ?>
             </select>
 
 
@@ -62,15 +62,15 @@
 
 <?php
 
-    if (isset ($_POST['Ubah'])){
+if (isset($_POST['Ubah'])) {
 
-	
+
 
     $sql_ubah = "UPDATE akun SET
-        id_akun='".$_POST['id_akun']."',
-        nama_akun='".$_POST['nama_akun']."',
-        keterangan='".$_POST['keterangan']."'
-        WHERE id='".$_POST['id']."'";
+        id_akun='" . $_POST['id_akun'] . "',
+        nama_akun='" . $_POST['nama_akun'] . "',
+        keterangan='" . $_POST['keterangan'] . "'
+        WHERE id='" . $_POST['id'] . "'";
     $query_ubah = mysqli_query($koneksi, $sql_ubah);
     mysqli_close($koneksi);
 
@@ -81,13 +81,14 @@
         {window.location = 'index.php?page=akun_data_rekap';
         }
         })</script>";
-    }else{
+    } else {
         echo "<script>
         Swal.fire({title: 'Ubah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
         }).then((result) => {if (result.value)
         {window.location = 'index.php?page=akun_data_rekap';
         }
         })</script>";
-	}}
-	
-	?>
+    }
+}
+
+?>

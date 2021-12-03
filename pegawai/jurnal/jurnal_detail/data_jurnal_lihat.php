@@ -44,18 +44,26 @@ while ($data = $sql->fetch_assoc()) {
             <table id="example1" class="table table-bordered table-striped m-2">
                 <thead>
                     <tr>
-                        <th>Tanggal</th>
-                        <th>Id akun </th>
-                        <th>Nama akun </th>
-                        <th>Debit </th>
-                        <th>Kredit </th>
+                        <th style="width:20px">Tanggal</th>
+                        <th style="width:20px">Id akun </th>
+                        <th style="width:105px">Nama akun </th>
+                        <th style="width:90px">Debit </th>
+                        <th style="width:90px">Kredit </th>
+                        <th>Deskripsi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php  
                         
-                        $sql=$koneksi->query("SELECT id_jurnal,concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,jurn.id_akun,akun.nama_akun, jurn.debit, jurn.kredit FROM `jurnal` jurn INNER JOIN akun akun ON jurn.id_akun = akun.id_akun INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan WHERE bln.nama_bulan='".$_GET['kode']."'");
+                        $sql=$koneksi->query("SELECT id_jurnal,concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,
+                        jurn.id_akun,akun.nama_akun, 
+                        jurn.debit, jurn.kredit,
+                        jurn.deskripsi
+                        FROM `jurnal` jurn 
+                        INNER JOIN akun akun ON jurn.id_akun = akun.id_akun 
+                        INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan 
+                        WHERE bln.nama_bulan='".$_GET['kode']."'");
                         while ($data = $sql->fetch_assoc()) {                            
                         
                     ?>
@@ -66,6 +74,7 @@ while ($data = $sql->fetch_assoc()) {
                         <td><?= $data['nama_akun']; ?></td>
                         <td><?= rupiah($data['debit']) ; ?></td>
                         <td><?= rupiah($data['kredit']); ?></td>
+                        <td><?= $data['deskripsi']; ?></td>
                         <td>
                             <a href=" ?page=update_data_jurnal&kode=<?=$namaBulan?>&id_jurnal=<?=$data['id_jurnal']; ?>"
                                 title="Ubah" class="btn btn-success btn-sm">
