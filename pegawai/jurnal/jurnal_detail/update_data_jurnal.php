@@ -1,6 +1,8 @@
 <?php
 if (isset($_GET['kode'],$_GET['id_jurnal'])) {
-    $sql_cek = "SELECT * FROM jurnal INNER JOIN akun ON jurnal.id_akun=akun.id_akun WHERE id_jurnal='".$_GET['id_jurnal']."' ";
+    $sql_cek = "SELECT * FROM jurnal 
+    INNER JOIN akun ON jurnal.id_akun=akun.id_akun 
+    WHERE id_jurnal='".$_GET['id_jurnal']."' ";
     $query_cek = mysqli_query($koneksi, $sql_cek);
     $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     
@@ -14,7 +16,9 @@ while ($data = $sql->fetch_assoc()) {
     <div class="card-header">
         <h3 class="card-title">
             <i class="fa fa-edit"></i> Ubah Jurnal
-        </h3>
+
+        </h3><br>
+        <h5>Bulan <?= $namaBulan; ?></h5>
     </div>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="card-body">
@@ -22,15 +26,12 @@ while ($data = $sql->fetch_assoc()) {
             <input type='hidden' class="form-control" name="id_jurnal" value="<?=$data_cek['id_jurnal']; ?>" readonly />
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Tanggal-Bulan</label>
+                <label class="col-sm-2 col-form-label">Tanggal</label>
                 <div class="col-sm-2">
                     <input type="number" class="form-control" id="tanggal" name="tanggal"
-                        value="<?=$data_cek['tanggal']?>" />
+                        value="<?=$data_cek['tanggal']?>" required />
                 </div>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="id_bulan" name="id_bulan"
-                        value="<?=$data_cek['id_bulan']?>" />
-                </div>
+
 
             </div>
 
@@ -39,7 +40,7 @@ while ($data = $sql->fetch_assoc()) {
 
                 <select class=" col-sm-5 p-2 ml-2 btn btn-success dropdown-toggle" type="button" id="id_akun"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="id_akun"
-                    style="color: white; ">
+                    style="color: white; " required>
 
                     <option value="<?=$data_cek['id_akun']?>" selected><?= $data_cek['nama_akun']; ?></option>
                     <?php $sql = "SELECT * FROM akun";
@@ -47,7 +48,7 @@ while ($data = $sql->fetch_assoc()) {
                     while ($data = mysqli_fetch_array($kueri)) {
 
                     ?>
-                    <option value=" <?= $data['0']; ?>"><?= $data['1']; ?></option>
+                    <option value=" <?= $data['1']; ?>"><?= $data['2']; ?></option>
                     <?php
                     }
                     ?>
@@ -74,7 +75,7 @@ while ($data = $sql->fetch_assoc()) {
                 <label class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                        value="<?=$data_cek['deskripsi']?>" />
+                        value="<?=$data_cek['deskripsi']?>" required />
                 </div>
             </div>
 
@@ -82,8 +83,7 @@ while ($data = $sql->fetch_assoc()) {
         </div>
         <div class=" card-footer">
             <input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
-            <a href="?page=data_jurnal_lihat&kode=<?= $namaBulan; ?>" title="Kembali"
-                class="btn btn-secondary">Batal</a>
+            <a href="?page=data_jurnal_lihat&kode=<?= $namaBulan; ?>" title="Batal" class="btn btn-secondary">Batal</a>
         </div>
     </form>
 </div>
@@ -92,7 +92,7 @@ while ($data = $sql->fetch_assoc()) {
 
     if (isset ($_POST['Ubah'])){
 
-        // *menangkap post debit
+    // *menangkap post debit
     $debit = $_POST['debit'];
 
     // *menangkap post kredit
@@ -107,8 +107,7 @@ while ($data = $sql->fetch_assoc()) {
     $sql_ubah = "UPDATE jurnal SET
         id_akun='".$_POST['id_akun']."',
         debit='".$hasil_debit."',
-        kredit='".$hasil_kredit."',
-        id_bulan='" . $_POST['id_bulan'] . "',
+        kredit='".$hasil_kredit."',        
         tanggal='" . $_POST['tanggal'] . "',
         deskripsi='" . $_POST['deskripsi'] . "'
         WHERE id_jurnal='".$_POST['id_jurnal']."'";
@@ -129,7 +128,8 @@ while ($data = $sql->fetch_assoc()) {
         {window.location = 'index.php?page=data_jurnal_lihat&kode=$namaBulan';
         }
         })</script>";
-	}}
+	}
+}
 	
 	?>
 

@@ -97,7 +97,7 @@ while ($data = $sql->fetch_assoc()) {
         </div>
         <div class="card-footer">
             <input type="submit" name="Simpan" value="Simpan" class="btn btn-info">
-            <a href=" ?page=data_jurnal_lihat&kode=<?= $namaBulan; ?>" title=" Kembali"
+            <a href=" ?page=data_jurnal_lihat&kode=<?= $namaBulan; ?>" title=" Batal"
                 class="btn btn-secondary">Batal</a>
         </div>
     </form>

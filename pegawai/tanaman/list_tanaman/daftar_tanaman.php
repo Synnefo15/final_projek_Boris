@@ -36,27 +36,40 @@ while ($data = $sql->fetch_assoc()) {
             </div>
             <table id="example1" class="table table-bordered table-striped m-2">
                 <thead>
+                    <tr class=" text-center">
+                        <th style="width: 10px;" rowspan="2">No</th>
+                        <th rowspan="2">Nama Tanaman</th>
+                        <th rowspan="2">Supplier</th>
+                        <th colspan="3">Stok</th>
+                        <th rowspan="2">Harga Jual</th>
+                        <th rowspan="2">Harga Supplier</th>
+                        <th rowspan="2">Aksi</th>
+                    </tr>
                     <tr>
-                        <th>No</th>
-                        <th>Nama Tanaman</th>
-                        <th>Supplier</th>
-                        <th>Stok</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Supplier</th>
+                        <td>Masuk</td>
+                        <td>Keluar</td>
+                        <td>Jumlah</td>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php
                     $no = 1;
-                    $sql = $koneksi->query("SELECT tanaman.id_tanaman,tanaman.nama, supplier.COMPANY_NAME, tanaman.unit_stok, tanaman.harga_jual, tanaman.harga_supplier 
+                    $sql = $koneksi->query("SELECT tanaman.id_tanaman,tanaman.nama, 
+                    supplier.COMPANY_NAME, 
+                    tanaman.stok_masuk,
+                    tanaman.stok_keluar,
+                    tanaman.harga_jual, 
+                    tanaman.harga_supplier,
+                    tanaman.stok_masuk - tanaman.stok_keluar as 'tot stok'
                     FROM `tanaman` 
                     INNER JOIN supplier ON supplier.SUPPLIER_ID = tanaman.id_supplier
                     ORDER BY tanaman.nama");
                     while ($data = $sql->fetch_assoc()) {
+                        
                     ?>
 
-                    <tr>
+                    <tr class=" text-center">
                         <td>
                             <?php echo $no++; ?>
                         </td>
@@ -67,20 +80,27 @@ while ($data = $sql->fetch_assoc()) {
                             <?php echo $data['COMPANY_NAME']; ?>
                         </td>
                         <td>
-                            <?php echo $data['unit_stok']; ?>
+                            <?php echo $data['stok_masuk']; ?>
                         </td>
                         <td>
-                            <?php echo $data['harga_jual']; ?>
+                            <?php echo $data['stok_keluar']; ?>
                         </td>
                         <td>
-                            <?php echo $data['harga_supplier']; ?>
+                            <?= $data['tot stok']; ?>
                         </td>
                         <td>
-                            <a href="?page=#&kode=<?php echo $data['id_tanaman']; ?>" title="Ubah"
+                            <?php echo rupiah($data['harga_jual']); ?>
+                        </td>
+                        <td>
+                            <?php echo rupiah($data['harga_supplier']); ?>
+                        </td>
+                        <td class=" mb-4">
+                            <a href=" ?page=update_tanaman&id=<?php echo $data['id_tanaman']; ?>" title="Ubah"
                                 class="btn btn-success btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="?page=#&kode=<?php echo $data['id_tanaman']; ?>"
+                            <br>
+                            <a href="?page=del_tanaman&id=<?php echo $data['id_tanaman']; ?>"
                                 onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
                                 class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>

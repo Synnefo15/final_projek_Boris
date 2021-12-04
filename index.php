@@ -469,6 +469,15 @@ include "inc/rupiah.php";
                             case 'daftar_tanaman':
                                 include "pegawai/tanaman/list_tanaman/daftar_tanaman.php";
                                 break;
+                            case 'del_tanaman':
+                                include "pegawai/tanaman/list_tanaman/del_tanaman.php";
+                                break;
+                            case 'add_tanaman':
+                                include "pegawai/tanaman/list_tanaman/add_tanaman.php";
+                                break;
+                            case 'update_tanaman':
+                                include "pegawai/tanaman/list_tanaman/update_tanaman.php";
+                                break;
 
                                 
                             // case 'i_add_km':

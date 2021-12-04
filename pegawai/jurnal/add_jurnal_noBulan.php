@@ -46,7 +46,7 @@
                 <label for="" class="col-sm-2 col-form-label">Nama Akun</label>
 
                 <select class=" col-sm-5 p-2 ml-2 btn btn-success dropdown-toggle" type="button" id="id_akun"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="id_akun">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="id_akun" required>
                     Pilih Lokasi
                     <option value="" disabled selected>---Pilih Akun---</option>
                     <?php $sql = "SELECT * FROM akun";
@@ -54,7 +54,7 @@
                     while ($data = mysqli_fetch_array($kueri)) {
 
                     ?>
-                    <option value="<?= $data['0']; ?>"><?= $data['1']; ?></option>
+                    <option value="<?= $data['1']; ?>"><?= $data['2']; ?></option>
                     <?php
                     }
                     ?>
@@ -85,7 +85,7 @@
                 <label class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                        placeholder="Uraian Transaksi">
+                        placeholder="Uraian Transaksi" required>
                 </div>
             </div>
 
@@ -96,8 +96,7 @@
         </div>
         <div class="card-footer">
             <input type="submit" name="Simpan" value="Simpan" class="btn btn-info">
-            <a href=" ?page=data_jurnal_lihat&kode=<?= $namaBulan; ?>" title=" Kembali"
-                class="btn btn-secondary">Batal</a>
+            <a href=" ?page=data_jurnal" title=" Batal" class="btn btn-secondary">Batal</a>
         </div>
     </form>
     <!-- * Data yang baru ditambahkan -->

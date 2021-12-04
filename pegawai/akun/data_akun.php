@@ -88,5 +88,7 @@ while ($data = $sql->fetch_assoc()) {
                 </tfoot>
             </table>
         </div>
+
     </div>
-    <!-- /.card-body -->
+</div>
+<!-- /.card-body -->

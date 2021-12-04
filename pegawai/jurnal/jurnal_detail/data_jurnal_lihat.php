@@ -50,7 +50,7 @@ while ($data = $sql->fetch_assoc()) {
                         <th style="width:90px">Debit </th>
                         <th style="width:90px">Kredit </th>
                         <th>Deskripsi</th>
-                        <th>Aksi</th>
+                        <th style="width: 60px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
