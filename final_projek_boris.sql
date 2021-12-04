@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2021 at 02:05 PM
+-- Generation Time: Dec 04, 2021 at 05:57 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `akun` (
+  `id` int(3) NOT NULL,
   `id_akun` int(11) NOT NULL,
   `nama_akun` varchar(40) NOT NULL,
   `keterangan` int(5) DEFAULT NULL
@@ -37,21 +38,29 @@ CREATE TABLE `akun` (
 -- Dumping data for table `akun`
 --
 
-INSERT INTO `akun` (`id_akun`, `nama_akun`, `keterangan`) VALUES
-(111, 'Kas', 1),
-(112, 'Piutang', 1),
-(113, 'Perlengkapan', 1),
-(121, 'Peralatan', 1),
-(122, 'Akumulasi Peralatan', 1),
-(211, 'Utang Usaha', 2),
-(311, 'Modal', 3),
-(312, 'Prive', 3),
-(411, 'Pendapatan Jasa', 4),
-(511, 'Beban Gaji', 5),
-(512, 'Beban Sewa', 5),
-(513, 'Beban Penyusutan Peralatan', 5),
-(514, 'Beban Lat', 5),
-(515, 'Beban Perlengkapan', 5);
+INSERT INTO `akun` (`id`, `id_akun`, `nama_akun`, `keterangan`) VALUES
+(1, 111, 'Kas', 1),
+(2, 112, 'Piutang', 1),
+(3, 116, 'Perlengkapan', 1),
+(4, 121, 'Peralatan', 1),
+(5, 122, 'Akumulasi Peralatan', 1),
+(6, 211, 'Utang Usaha', 2),
+(7, 311, 'Modal', 3),
+(8, 312, 'Prive', 3),
+(9, 411, 'Penjualan', 4),
+(10, 511, 'Beban Gaji', 5),
+(11, 512, 'Beban Sewa', 5),
+(12, 513, 'Beban Penyusutan Peralatan', 5),
+(13, 514, 'Beban Listrik', 2),
+(14, 515, 'Beban Perlengkapan', 5),
+(16, 115, 'persediaan', 1),
+(17, 120, 'tanah', 1),
+(18, 123, 'peralatan', 1),
+(19, 124, 'akumulasi penyusutan-peralatan', 1),
+(20, 313, 'iktisar laba rugi', 3),
+(22, 212, 'Hutang gaji', 2),
+(23, 516, 'beban air', 5),
+(24, 517, 'beban internet', 5);
 
 -- --------------------------------------------------------
 
@@ -73,8 +82,7 @@ INSERT INTO `akun_keterangan` (`id_akun_keterangan`, `keterangan`) VALUES
 (2, 'liabilitas'),
 (3, 'ekuitas'),
 (4, 'pendapatan'),
-(5, 'beban'),
-(6, 'penjualan');
+(5, 'beban');
 
 -- --------------------------------------------------------
 
@@ -127,7 +135,7 @@ INSERT INTO `customer` (`CUST_ID`, `FIRST_NAME`, `LAST_NAME`, `PHONE_NUMBER`) VA
 (14, 'mamad', 'junaedi', '08781633451'),
 (16, 'sigit', 'yono', '0891344576'),
 (19, 'panji', 'gilang', '930193849'),
-(20, 'syta', 'ajaok', '000000');
+(20, 'syta', 'ajak', '08123898237');
 
 -- --------------------------------------------------------
 
@@ -138,8 +146,8 @@ INSERT INTO `customer` (`CUST_ID`, `FIRST_NAME`, `LAST_NAME`, `PHONE_NUMBER`) VA
 CREATE TABLE `jurnal` (
   `id_jurnal` int(11) NOT NULL,
   `id_akun` int(11) NOT NULL,
-  `debit` int(11) DEFAULT NULL,
-  `kredit` int(11) DEFAULT NULL,
+  `debit` int(11) NOT NULL DEFAULT 0,
+  `kredit` int(11) NOT NULL DEFAULT 0,
   `id_bulan` int(2) NOT NULL,
   `tanggal` int(2) NOT NULL,
   `deskripsi` varchar(200) NOT NULL
@@ -150,12 +158,20 @@ CREATE TABLE `jurnal` (
 --
 
 INSERT INTO `jurnal` (`id_jurnal`, `id_akun`, `debit`, `kredit`, `id_bulan`, `tanggal`, `deskripsi`) VALUES
-(1, 511, 10000, 0, 1, 1, 'membayar karyawan'),
-(2, 111, 0, 10000, 1, 1, 'membayar karyawan'),
-(3, 411, NULL, 5000, 2, 2, 'jasa dari pak pras'),
-(4, 111, 5000, NULL, 2, 2, 'jasa dari pak pras'),
-(5, 111, NULL, 3000, 2, 3, 'diambil uang untuk keperluan pribadi'),
-(6, 312, 3000, NULL, 2, 3, 'diambil uang untuk keperluan pribadi');
+(2, 111, 0, 1000, 1, 1, 'membayar karyawan'),
+(17, 411, 1232, 0, 2, 3, ''),
+(18, 411, 19999, 0, 2, 3, ''),
+(21, 311, 45555, 0, 2, 5, ''),
+(23, 112, 12000, 0, 5, 4, 'beli komputer'),
+(24, 121, 123, 0, 9, 5, 'asdad'),
+(25, 111, 1000, 0, 2, 13, ''),
+(26, 111, 0, 2000, 2, 13, ''),
+(27, 111, 13000, 0, 2, 2, 'tes'),
+(28, 111, 0, 4000, 2, 6, ''),
+(32, 514, 12121, 0, 5, 2, 'tes'),
+(33, 115, 0, 99999, 5, 5, 'sss'),
+(36, 211, 0, 90000, 12, 2, 'bayar pln'),
+(37, 411, 2000, 0, 1, 1, 'coba');
 
 -- --------------------------------------------------------
 
@@ -279,7 +295,10 @@ INSERT INTO `supplier` (`SUPPLIER_ID`, `COMPANY_NAME`, `LOCATION_ID`, `PHONE_NUM
 CREATE TABLE `tanaman` (
   `id_tanaman` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `harga _jual` int(11) NOT NULL,
+  `id_supplier` int(3) NOT NULL,
+  `stok_masuk` int(4) NOT NULL,
+  `stok_keluar` int(4) NOT NULL DEFAULT 0,
+  `harga_jual` int(11) NOT NULL,
   `harga_supplier` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -287,9 +306,18 @@ CREATE TABLE `tanaman` (
 -- Dumping data for table `tanaman`
 --
 
-INSERT INTO `tanaman` (`id_tanaman`, `nama`, `harga _jual`, `harga_supplier`) VALUES
-(1, 'melati', 10000, 5000),
-(2, 'mawar', 12000, 10000);
+INSERT INTO `tanaman` (`id_tanaman`, `nama`, `id_supplier`, `stok_masuk`, `stok_keluar`, `harga_jual`, `harga_supplier`) VALUES
+(1, 'melati', 11, 10, 5, 10000, 5000),
+(2, 'mawar', 12, 6, 1, 12000, 10000),
+(3, 'mawar', 11, 6, 5, 14000, 10000),
+(5, 'adam hawa', 13, 120, 24, 100000, 80000),
+(15, 'dandelion', 12, 20, 4, 50000, 120000),
+(34, 'anggrek', 12, 20, 0, 20000, 10000),
+(35, 'janda bolong', 13, 91, 0, 30000, 20000),
+(36, 'janga kembang', 16, 111, 0, 1000, 2000),
+(37, 'duda bolong', 16, 29, 0, 100000, 200000),
+(38, 'duda bolong 2', 12, 10, 0, 1000000, 300000),
+(39, 'mangga', 12, 76, 0, 1000, 2000);
 
 -- --------------------------------------------------------
 
@@ -302,7 +330,7 @@ CREATE TABLE `tb_pengguna` (
   `nama_pengguna` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `level` enum('Administrator','Bendahara') NOT NULL
+  `level` enum('Administrator','Pegawai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -311,7 +339,7 @@ CREATE TABLE `tb_pengguna` (
 
 INSERT INTO `tb_pengguna` (`id_pengguna`, `nama_pengguna`, `username`, `password`, `level`) VALUES
 (1, 'rafi', 'rafi', 'rafi', 'Administrator'),
-(2, 'syn', 'syn', 'syn', 'Bendahara');
+(2, 'syn', 'syn', 'syn', 'Pegawai');
 
 --
 -- Indexes for dumped tables
@@ -321,7 +349,8 @@ INSERT INTO `tb_pengguna` (`id_pengguna`, `nama_pengguna`, `username`, `password
 -- Indexes for table `akun`
 --
 ALTER TABLE `akun`
-  ADD PRIMARY KEY (`id_akun`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_akun` (`id_akun`) USING BTREE,
   ADD KEY `keterangan` (`keterangan`);
 
 --
@@ -387,7 +416,8 @@ ALTER TABLE `supplier`
 -- Indexes for table `tanaman`
 --
 ALTER TABLE `tanaman`
-  ADD PRIMARY KEY (`id_tanaman`);
+  ADD PRIMARY KEY (`id_tanaman`),
+  ADD KEY `id_supplier` (`id_supplier`);
 
 --
 -- Indexes for table `tb_pengguna`
@@ -398,6 +428,12 @@ ALTER TABLE `tb_pengguna`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `akun`
+--
+ALTER TABLE `akun`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `bulan`
@@ -415,7 +451,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `kas_masjid`
@@ -451,7 +487,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `tanaman`
 --
 ALTER TABLE `tanaman`
-  MODIFY `id_tanaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tanaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tb_pengguna`
@@ -482,6 +518,12 @@ ALTER TABLE `penjualan_tanaman`
 --
 ALTER TABLE `supplier`
   ADD CONSTRAINT `supplier_ibfk_1` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tanaman`
+--
+ALTER TABLE `tanaman`
+  ADD CONSTRAINT `tanaman_ibfk_1` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`SUPPLIER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

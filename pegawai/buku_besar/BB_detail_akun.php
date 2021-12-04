@@ -77,10 +77,10 @@
                     <tr>
 
                         <td><?= $data['tanggal'] ; ?></td>
-                        <td><?= rupiah($data['debit']) ; ?></td>
-                        <td><?= rupiah($data['kredit']); ?></td>
-                        <td><?= rupiah($data['saldo_debit']); ?></td>
-                        <td><?= rupiah($data['saldo_kredit']); ?></td>
+                        <td class=" text-right"><?= rupiah($data['debit']) ; ?></td>
+                        <td class=" text-right"><?= rupiah($data['kredit']); ?></td>
+                        <td class=" text-right"><?= rupiah($data['saldo_debit']); ?></td>
+                        <td class=" text-right"><?= rupiah($data['saldo_kredit']); ?></td>
                     </tr>
 
                     <?php  
@@ -88,16 +88,54 @@
                     ?>
                     <?php  
                         // disini nanti ngodingnya. Trus dibuat total harga
+                        $sql = $koneksi-> query("SELECT 
+                        SUM(jurnal.debit) as 'total debit', 
+                        SUM(jurnal.kredit) as 'total kredit',
+                        (CASE 
+                        WHEN SUM(jurnal.debit) > SUM(jurnal.kredit) THEN SUM(jurnal.debit)-SUM(jurnal.kredit)                         
+                        END) as 'saldo debit',
+                        (CASE                                                       
+                        WHEN SUM(jurnal.debit) < SUM(jurnal.kredit) THEN SUM(jurnal.kredit)-SUM(jurnal.debit)                           
+                        END) as 'saldo kredit'
+                        FROM `jurnal`                                                 
+                        INNER JOIN akun ON jurnal.id_akun = akun.id_akun 
+                        INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan 
+                        WHERE bulan.nama_bulan='".$_GET['bulan']."' 
+                        AND akun.nama_akun='".$_GET['akun']."'");
+                        while ($data=$sql->fetch_assoc()) {
+                            
+                        
                     ?>
                     <tr>
                         <td colspan="3" class=" bg-white text-center text-bold">Saldo</td>
-                        <td>debit</td>
-                        <td>kredit</td>
+                        <td class=" text-right"><?= rupiah($data['total debit']); ?></td>
+                        <td class=" text-right"><?= rupiah($data['total kredit']); ?></td>
                     </tr>
-                    <ttr>
-                        <td colspan="3" class=" bg-white text-center text-blue text-bold">Total Saldo</td>
-                        <td colspan="2" class=" text-center text-blue">rp</td>
-                    </ttr>
+                    <tr>
+                        <td colspan="3" class=" bg-white text-center text-blue text-bold">Total Saldo
+                            <?php  
+                                if ($data['saldo debit'] > $data['saldo kredit']) {
+                                    echo "(Debit)";
+                                }else {
+                                    echo "(Kredit)";
+                                }
+                            ?>
+
+                        </td>
+                        <td colspan="2" class=" text-center text-blue">
+                            <?php  
+                            if ($data['saldo debit'] > $data['saldo kredit']) {
+                            echo rupiah($data['saldo debit']);
+                            }else{
+                            echo rupiah($data['saldo kredit']);
+                            }
+                            ?>
+
+                        </td>
+                    </tr>
+                    <?php
+                    }  
+                    ?>
                 </tbody>
             </table>
         </div>

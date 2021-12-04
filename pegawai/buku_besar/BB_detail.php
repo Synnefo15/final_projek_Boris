@@ -38,7 +38,7 @@
 </div>
 <div class=" card card-secondary">
     <div class=" card-title bg-secondary">
-        <h2 class=" card-title align-content-center" style=" font-size: 25px;"><?= $_GET['bulan']; ?></h2>
+        <h2 class=" card-title align-content-center p-2" style=" font-size: 25px;"><?= $_GET['bulan']; ?></h2>
 
     </div>
 
@@ -99,4 +99,33 @@
     }  
     ?>
 
+</div>
+
+<div class=" card">
+    <div class=" card-body">
+        <div>
+            <?php 
+                $sql=$koneksi->query("SELECT SUM(debit) as debit, SUM(kredit) as kredit
+                FROM `jurnal`
+                INNER JOIN bulan ON bulan.id_bulan = jurnal.id_bulan
+                WHERE bulan.nama_bulan = '".$_GET['bulan']."'");
+                while ($data=$sql->fetch_assoc()) {
+                    
+                
+            ?>
+            <h5>
+                Total Debit:
+                <?= rupiah($data['debit']); ?>
+            </h5>
+            <h5>Total Kredit:
+                <?= rupiah($data['kredit']); ?>
+            </h5>
+        </div>
+        <?php  
+        }
+        ?>
+        <div class=" card-footer">
+            <a href=" ?page=lihat_BB" title=" Kembali" class="btn btn-secondary" style="width: 150px; ">Kembali</a>
+        </div>
+    </div>
 </div>

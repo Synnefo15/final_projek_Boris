@@ -39,7 +39,7 @@ while ($data=$sql->fetch_assoc()){
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Company Name</th>
+                        <th>Nama Supplier</th>
                         <th>Kota</th>
                         <th>Provinsi</th>
                         <th>Phone Number</th>
