@@ -34,16 +34,25 @@
                         <th>Tanaman</th>
                         <th>Jumlah Beli</th>
                         <th>Customer</th>
+                        <th>Tanggal Pesan</th>
+                        <th>Tanggal Kirim</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php
-              $no = 1;
-              $sql = $koneksi->query("SELECT tnm.`nama`, pt.`jumlah_pembelian`, CONCAT_WS(' ',cus.FIRST_NAME,cus.LAST_NAME) AS `Nama Cus` FROM `penjualan_tanaman` pt INNER JOIN tanaman tnm ON pt.id_tanaman = tnm.id_tanaman INNER JOIN customer cus ON pt.id_customer = cus.CUST_ID");
-              while ($data= $sql->fetch_assoc()) {
-            ?>
+                    $no = 1;
+                    $sql = $koneksi->query("SELECT tnm.`nama`, pt.`jumlah_pembelian`, 
+                    CONCAT_WS(' ',cus.FIRST_NAME,cus.LAST_NAME) AS `Nama Cus`,
+                    pt.tgl_pesan,
+                    pt.tgl_kirim    
+                    FROM `penjualan_tanaman` pt 
+                    INNER JOIN tanaman tnm ON pt.id_tanaman = tnm.id_tanaman 
+                    INNER JOIN customer cus ON pt.id_customer = cus.CUST_ID");
+                    while ($data = $sql->fetch_assoc()) {
+                    
+                    ?>
 
                     <tr>
                         <td>
@@ -59,6 +68,8 @@
                         <td>
                             <?php echo $data['Nama Cus']; ?>
                         </td>
+                        <td><?= $data['tgl_pesan']; ?></td>
+                        <td><?= $data['tgl_kirim']; ?></td>
 
                         <td>
                             <a href="?page=i_edit_km&kode=<?php echo $data['id_km']; ?>" title="Ubah"
@@ -74,8 +85,8 @@
                     </tr>
 
                     <?php
-              }
-            ?>
+                }
+                ?>
                 </tbody>
                 </tfoot>
             </table>

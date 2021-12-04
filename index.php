@@ -320,8 +320,14 @@ include "inc/rupiah.php";
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="?page=daftar_tanaman" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-success"></i>
+                                            <i class="nav-icon far fa-circle text-secondary"></i>
                                             <p>Daftar Tanaman</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="?page=list_tanaman_masuk" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-warning"></i>
+                                            <p>Tanaman Masuk</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -464,6 +470,9 @@ include "inc/rupiah.php";
                             case 'tanaman_penjualan':
                                 include "pegawai/tanaman/penjualan/data_penjualan.php";
                                 break;
+                            case 'add_penjualan':
+                                include "";
+                                break;
                                 
                                 // *List Tanaman
                             case 'daftar_tanaman':
@@ -478,17 +487,16 @@ include "inc/rupiah.php";
                             case 'update_tanaman':
                                 include "pegawai/tanaman/list_tanaman/update_tanaman.php";
                                 break;
-
                                 
-                            // case 'i_add_km':
-                            //     include "pegawai/tanaman/penjualan/add_kas.php";
-                            //     break;
-                            // case 'i_edit_km':
-                            //     include "pegawai/tanaman/penjualan/edit_kas.php";
-                            //     break;
-                            // case 'i_del_km':
-                            //     include "pegawai/tanaman/penjualan/del_kas.php";
-                            //     break;
+                                // * rekap tanaman masuk
+                            case  'list_tanaman_masuk':
+                                include "pegawai/tanaman/tanaman_masuk/list_tanaman_masuk.php";
+                                break;
+                            case 'detail_tanaman_masuk':
+                                include "pegawai/tanaman/tanaman_masuk/detail_tanaman_masuk.php";
+                                break;
+
+                                                            
 
                                 //Masjid out
                             case 'o_data_km':

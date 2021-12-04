@@ -40,7 +40,7 @@
                 <label for="" class="col-sm-2 col-form-label">Unit Stok</label>
                 <div class=" col-sm-8">
                     <input type="number" class=" form-control" id="stok_masuk" name="stok_masuk"
-                        placeholder="Masukkan jumlah stok" required>
+                        placeholder="Masukkan jumlah stok" maxlength="5" required>
                 </div>
             </div>
             <div class=" form-group row">

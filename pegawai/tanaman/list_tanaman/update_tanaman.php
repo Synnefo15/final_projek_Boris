@@ -8,10 +8,7 @@ if (isset($_GET['id'])) {
     $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
 }
 ?>
-<?php 
-    // $sql=$koneksi->query("");
-    // while
-?>
+
 
 <div class=" card card-success">
     <div class=" card-header">
@@ -54,7 +51,7 @@ if (isset($_GET['id'])) {
                 </select>
             </div>
 
-            <div class=" form-group row">
+            <!-- <div class=" form-group row">
                 <label for="" class="col-sm-2 col-form-label">Stok Masuk</label>
                 <div class=" col-sm-8">
                     <input type="number" class=" form-control" id="stok_masuk" name="stok_masuk"
@@ -67,7 +64,7 @@ if (isset($_GET['id'])) {
                     <input type="number" class=" form-control" id="stok_keluar" name="stok_keluar"
                         placeholder="Masukkan jumlah stok keluar" required value="<?=$data_cek['stok_keluar']?>">
                 </div>
-            </div>
+            </div> -->
             <div class=" form-group row">
                 <label class="col-sm-2 col-form-label">Harga Jual</label>
                 <div class=" col-sm-8">
@@ -101,9 +98,7 @@ if (isset($_GET['id'])) {
 
         $sql_ubah = "UPDATE `tanaman` SET
         `nama`='".$_POST['nama']."',
-        `id_supplier`='".$_POST['id_supplier']."',
-        `stok_masuk`='".$_POST['stok_masuk']."',
-        `stok_keluar`='".$_POST['stok_keluar']."',
+        `id_supplier`='".$_POST['id_supplier']."',        
         `harga_jual`='".$hasil_HJ."',
         `harga_supplier`='".$hasil_HS."' 
         WHERE id_tanaman='".$_POST['id_tanaman']."'";
