@@ -55,6 +55,7 @@
                 <div class=" col-sm-8">
                     <input type="text" class=" form-control" id="harga_supplier" name="harga_supplier"
                         placeholder="Masukkan harga supplier" required>
+
                 </div>
             </div>
 
@@ -65,9 +66,11 @@
         </div>
     </form>
 </div>
+
 <?php
 if (isset($_POST['Simpan'])) {
-    # code...
+    
+    
     $hargaJual = $_POST['harga_jual'];
     $hargaSupplier = $_POST['harga_supplier'];
 
@@ -76,57 +79,64 @@ if (isset($_POST['Simpan'])) {
 
     
 
+    if ($hasil_HJ > $hasil_HS ) {
 
-    $sql_simpan = "INSERT INTO `tanaman`(`nama`, `id_supplier`, `stok_masuk`, `harga_jual`, `harga_supplier`) 
+        $sql_simpan = "INSERT INTO `tanaman`(`nama`, `id_supplier`, `stok_masuk`, `harga_jual`, `harga_supplier`) 
             VALUES ('" . $_POST['nama'] . "',
                     '" . $_POST['id_supplier'] . "',
                     '" . $_POST['stok_masuk'] . "',
                     '" . $hasil_HJ . "',
                     '" . $hasil_HS . "')";
-    $query_simpan = mysqli_query($koneksi, $sql_simpan);
-    mysqli_close($koneksi);
+        $query_simpan = mysqli_query($koneksi, $sql_simpan);
+        mysqli_close($koneksi);
 
-    if ($query_simpan) {
-        if ($hasil_HJ > $hasil_HS) {
-            
+        if ($query_simpan) {
+            // * sukses
             echo "<script>
             Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
             }).then((result) => {if (result.value){
                 window.location = 'index.php?page=daftar_tanaman';
                 }
             })</script>";
-        } else{
-            
-            
-
-          echo "<script>
-        Swal.fire({title: 'Input Harga Jual harus > Harga supplier',text: '',icon: 'warning',confirmButtonText: 'OK'
-        }).then((result) => {if (result.value){
-            window.location = 'index.php?page=add_tanaman';
-            }
-        })</script>";
+        }else {
+            // *gagal
+            echo "<script>
+            Swal.fire({
+                title: 'Tambah Data Gagal',
+                text: '',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location = 'index.php?page=daftar_tanaman';
+                }
+            })
+            </script>";
         }
         
-    } 
-    else {
+        
+    }else {
+        // * hrus >
         echo "<script>
-Swal.fire({
-    title: 'Tambah Data Gagal',
-    text: '',
-    icon: 'error',
-    confirmButtonText: 'OK'
-}).then((result) => {
-    if (result.value) {
-        window.location = 'index.php?page=daftar_tanaman';
-    }
-})
-</script>";
-    }
+        Swal.fire({
+            title: 'Input Harga Jual harus > Harga supplier',
+            text: '',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.value){
+            window.location = 'index.php?page=add_tanaman';
+            }
+        })</script>";   
+    }    
+
+
+    
+
+    
 }
 
     //selesai proses simpan data
-
-
 ?>
 
 <script type="text/javascript">
