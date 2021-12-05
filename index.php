@@ -258,11 +258,10 @@ include "inc/rupiah.php";
                             </li>
 
                             <li class="nav-item">
-                                <a href="?page=#" class="nav-link">
-                                    <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
+                                <a href="?page=lihat_neraca" class="nav-link">
+                                    <i class="fas fa-balance-scale-left" style="color: skyblue;width: 25px;"></i>
                                     <p>
-
-                                        |Laporan Keuangan
+                                        |Neraca Saldo
                                     </p>
                                 </a>
                             </li>
@@ -272,7 +271,7 @@ include "inc/rupiah.php";
                                     <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
                                     <p>
 
-                                        |Neraca Saldo
+                                        |Laporan Keuangan
                                     </p>
                                 </a>
                             </li>
@@ -465,7 +464,8 @@ include "inc/rupiah.php";
                                 include "admin/pengguna/del_pengguna.php";
                                 break;
 
-                                // # Tanaman
+                                // &========= Tanaman=======
+                                
                                 // * Tanaman penjualan
                             case 'tanaman_penjualan':
                                 include "pegawai/tanaman/penjualan/data_penjualan.php";
@@ -499,62 +499,62 @@ include "inc/rupiah.php";
                                                             
 
                                 //Masjid out
-                            case 'o_data_km':
-                                include "pegawai/masjid/out/data_kas.php";
-                                break;
-                            case 'o_add_km':
-                                include "pegawai/masjid/out/add_kas.php";
-                                break;
-                            case 'o_edit_km':
-                                include "pegawai/masjid/out/edit_kas.php";
-                                break;
-                            case 'o_del_km':
-                                include "pegawai/masjid/out/del_kas.php";
-                                break;
+                            // case 'o_data_km':
+                            //     include "pegawai/masjid/out/data_kas.php";
+                            //     break;
+                            // case 'o_add_km':
+                            //     include "pegawai/masjid/out/add_kas.php";
+                            //     break;
+                            // case 'o_edit_km':
+                            //     include "pegawai/masjid/out/edit_kas.php";
+                            //     break;
+                            // case 'o_del_km':
+                            //     include "pegawai/masjid/out/del_kas.php";
+                            //     break;
 
-                            case 'rekap_km':
-                                include "pegawai/masjid/rekap_kas.php";
-                                break;
+                            // case 'rekap_km':
+                            //     include "pegawai/masjid/rekap_kas.php";
+                            //     break;
 
-                                //sos in
-                            case 'i_data_ks':
-                                include "pegawai/sosial/in/data_kas.php";
-                                break;
-                            case 'i_add_ks':
-                                include "pegawai/sosial/in/add_kas.php";
-                                break;
-                            case 'i_edit_ks':
-                                include "pegawai/sosial/in/edit_kas.php";
-                                break;
-                            case 'i_del_ks':
-                                include "pegawai/sosial/in/del_kas.php";
-                                break;
+                            //     //sos in
+                            // case 'i_data_ks':
+                            //     include "pegawai/sosial/in/data_kas.php";
+                            //     break;
+                            // case 'i_add_ks':
+                            //     include "pegawai/sosial/in/add_kas.php";
+                            //     break;
+                            // case 'i_edit_ks':
+                            //     include "pegawai/sosial/in/edit_kas.php";
+                            //     break;
+                            // case 'i_del_ks':
+                            //     include "pegawai/sosial/in/del_kas.php";
+                            //     break;
 
-                                //sos out
-                            case 'o_data_ks':
-                                include "pegawai/sosial/out/data_kas.php";
-                                break;
-                            case 'o_add_ks':
-                                include "pegawai/sosial/out/add_kas.php";
-                                break;
-                            case 'o_edit_ks':
-                                include "pegawai/sosial/out/edit_kas.php";
-                                break;
-                            case 'o_del_ks':
-                                include "pegawai/sosial/out/del_kas.php";
-                                break;
+                            //     //sos out
+                            // case 'o_data_ks':
+                            //     include "pegawai/sosial/out/data_kas.php";
+                            //     break;
+                            // case 'o_add_ks':
+                            //     include "pegawai/sosial/out/add_kas.php";
+                            //     break;
+                            // case 'o_edit_ks':
+                            //     include "pegawai/sosial/out/edit_kas.php";
+                            //     break;
+                            // case 'o_del_ks':
+                            //     include "pegawai/sosial/out/del_kas.php";
+                            //     break;
 
-                            case 'rekap_ks':
-                                include "pegawai/sosial/rekap_kas.php";
-                                break;
+                            // case 'rekap_ks':
+                            //     include "pegawai/sosial/rekap_kas.php";
+                            //     break;
 
-                                //lap kas mas
-                            case 'lap_masjid':
-                                include "pegawai/laporan/lap_mas.php";
-                                break;
-                            case 'lap_sosial':
-                                include "pegawai/laporan/lap_sos.php";
-                                break;
+                            //     //lap kas mas
+                            // case 'lap_masjid':
+                            //     include "pegawai/laporan/lap_mas.php";
+                            //     break;
+                            // case 'lap_sosial':
+                            //     include "pegawai/laporan/lap_sos.php";
+                            //     break;
 
                                 // & ======PERSON======
 
@@ -633,6 +633,14 @@ include "inc/rupiah.php";
                             case 'BB_detail_akun':
                                 include "pegawai/buku_besar/BB_detail_akun.php";
                                 break;
+
+                                // &======== Neraca========
+                                case 'lihat_neraca':
+                                    include "pegawai/neraca_saldo/lihat_neraca.php";
+                                    break;
+                                case 'neraca_detail':
+                                    include "pegawai/neraca_saldo/neraca_detail.php";
+                                    break;
                                 
                                 // # default
                             default:

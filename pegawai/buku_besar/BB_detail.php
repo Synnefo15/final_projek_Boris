@@ -19,6 +19,7 @@
     WHERE bulan.nama_bulan = '".$_GET['bulan']."' ");
     while ($data = $sql->fetch_assoc()) {
         $jumlahAkun = $data['jumlah'];
+        $namaBulan = $data['nama_bulan'];
     }
 ?>
 
@@ -124,8 +125,70 @@
         <?php  
         }
         ?>
-        <div class=" card-footer">
-            <a href=" ?page=lihat_BB" title=" Kembali" class="btn btn-secondary" style="width: 150px; ">Kembali</a>
-        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class=" card-footer">
+
+                <input class="btn btn-warning" type="submit" name="Generate" value="Generate Neraca"
+                    title="Generate neraca">
+
+
+                <a href=" ?page=lihat_BB" title=" Kembali" class="btn btn-secondary" style="width: 150px; ">Kembali</a>
+            </div>
+        </form>
+
     </div>
 </div>
+<?php 
+
+    if (isset($_POST['Generate'])) {
+
+        $sql_hapus = "DELETE FROM `saldo` WHERE bulan = '".$namaBulan."' ";
+        $query_hapus = mysqli_query($koneksi,$sql_hapus);
+        
+        $sql_simpan = "INSERT INTO saldo (id_akun,bulan,debit,kredit,saldo_debit,saldo_kredit)						
+                        SELECT jurnal.id_akun,
+                        bulan.nama_bulan,
+                        SUM(jurnal.debit) as debit ,
+                        SUM(jurnal.kredit) as kredit,                        
+                        (CASE
+                            WHEN SUM(jurnal.debit) > SUM(jurnal.kredit) THEN SUM(jurnal.debit)-SUM(jurnal.kredit)                         
+                            
+                        END) as saldo_debit ,
+                        (CASE                            
+                            WHEN SUM(jurnal.debit) < SUM(jurnal.kredit) THEN SUM(jurnal.kredit)-SUM(jurnal.debit)
+                            
+                        END) as saldo_kredit                 
+                        FROM `jurnal` 
+                        INNER JOIN akun ON jurnal.id_akun = akun.id_akun 
+                        INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan 
+                        WHERE bulan.nama_bulan='".$namaBulan."' 
+                        GROUP BY jurnal.id_akun";
+        $query_simpan = mysqli_query($koneksi, $sql_simpan);
+                
+        mysqli_close($koneksi);
+
+        if ($query_hapus and $query_simpan) {
+            echo "<script>
+                Swal.fire({title: 'Generate Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value){
+                    window.location = 'index.php?page=neraca_detail&bulan=$namaBulan';
+                }
+                })</script>";
+        }else{
+            echo "<script>
+                Swal.fire({
+                    title: 'Generate Gagal',
+                    text: '',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location = 'index.php?page=BB_detail&bulan=$namaBulan';
+                    }
+                })
+                </script>";
+        }
+}
+
+
+?>
