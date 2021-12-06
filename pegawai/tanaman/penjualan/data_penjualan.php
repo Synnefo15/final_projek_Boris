@@ -1,10 +1,19 @@
+<?php 
+    if (isset($_GET['kode'])) {
+        $sql_cek=  "SELECT monthname(tgl_pesan) as bulan FROM `penjualan_tanaman` 
+        WHERE monthname(tgl_pesan) = '".$_GET['kode']."'";
+        $query_cek = mysqli_query($koneksi, $sql_cek);
+        $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
+    }
+?>
 <div class="alert alert-success alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <h5>
         <i class="icon fas fa-info"></i> Total Transaksi Tanaman
     </h5>
     <?php
-    $sql = $koneksi->query("SELECT COUNT(*) as 'total penjualan'  from penjualan_tanaman ");
+    $sql = $koneksi->query("SELECT COUNT(*) as 'total penjualan'  from penjualan_tanaman 
+    WHERE monthname(tgl_pesan) = '".$_GET['kode']."'");
     while ($data= $sql->fetch_assoc()) {
   ?>
     <h2>
@@ -16,15 +25,18 @@
 <div class="card card-info">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="fa fa-table"></i> Penjualan Tanaman
+            <i class="fa fa-table"></i> Penjualan Tanaman <br>
+            Bulan :
+            <?= $_GET['kode']; ?>
         </h3>
+
     </div>
     <!-- /.card-header -->
     <div class="card-body">
         <div class="table-responsive">
             <div>
-                <a href="?page=#" class="btn btn-primary">
-                    <i class="fa fa-edit"></i> Tambah Data</a>
+                <!-- <a href="?page=add_penjualan" class="btn btn-primary">
+                    <i class="fa fa-edit"></i> Tambah Data</a> -->
             </div>
             <br>
             <table id="example1" class="table table-bordered table-striped">
@@ -36,7 +48,7 @@
                         <th>Customer</th>
                         <th>Tanggal Pesan</th>
                         <th>Tanggal Kirim</th>
-                        <th>Aksi</th>
+                        <!-- <th>Aksi</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +61,8 @@
                     pt.tgl_kirim    
                     FROM `penjualan_tanaman` pt 
                     INNER JOIN tanaman tnm ON pt.id_tanaman = tnm.id_tanaman 
-                    INNER JOIN customer cus ON pt.id_customer = cus.CUST_ID");
+                    INNER JOIN customer cus ON pt.id_customer = cus.CUST_ID
+                    WHERE monthname(tgl_pesan) = '".$_GET['kode']."'");
                     while ($data = $sql->fetch_assoc()) {
                     
                     ?>
@@ -72,7 +85,7 @@
                         <td><?= $data['tgl_kirim']; ?></td>
 
                         <td>
-                            <a href="?page=i_edit_km&kode=<?php echo $data['id_km']; ?>" title="Ubah"
+                            <!-- <a href="?page=i_edit_km&kode=<?php echo $data['id_km']; ?>" title="Ubah"
                                 class="btn btn-success btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
@@ -80,7 +93,7 @@
                                 onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
                                 class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
-                                </>
+                                </> -->
                         </td>
                     </tr>
 
@@ -91,5 +104,8 @@
                 </tfoot>
             </table>
         </div>
+    </div>
+    <div class=" card-footer">
+        <a href="?page=list_penjualan" title="Kembali" class="btn btn-secondary">Kembali</a>
     </div>
     <!-- /.card-body -->

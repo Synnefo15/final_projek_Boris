@@ -1,27 +1,3 @@
-<?php
-
-// if (isset($_GET['kode'])) {
-//     $sql_cek = "SELECT * FROM jurnal WHERE id_bulan='" . $_GET['kode'] . "'";
-//     $query_cek = mysqli_query($koneksi, $sql_cek);
-//     $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
-// }
-?>
-<?php
-// $sql = $koneksi->query("SELECT * FROM `bulan` WHERE nama_bulan='" . $_GET['kode'] . "'");
-// while ($data = $sql->fetch_assoc()) {
-//     $namaBulan = $data['nama_bulan'];
-// }
-?>
-<?php
-// $sql = $koneksi->query("SELECT * FROM `bulan` WHERE nama_bulan='" . $_GET['kode'] . "'");
-// while ($data = $sql->fetch_assoc()) {
-//     $idBulan = $data['id_bulan'];
-// }
-?>
-
-<?php
-// $sql=$koneksi->query("SELECT  akun.nama_akun, `debit`, `kredit`, concat_ws('-',`id_bulan`, `tanggal`) as tanggal , `deskripsi` FROM `jurnal` INNER JOIN akun ON jurnal.id_akun = akun.id_akun WHERE tanggal = '".$_GET['tanggal']."'");
-?>
 <div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">
@@ -88,10 +64,6 @@
                         placeholder="Uraian Transaksi" required>
                 </div>
             </div>
-
-
-
-
 
         </div>
         <div class="card-footer">

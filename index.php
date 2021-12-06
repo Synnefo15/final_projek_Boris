@@ -227,55 +227,6 @@ include "inc/rupiah.php";
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="?page=akun_data_rekap" class="nav-link">
-                                    <i class="fas fa-campground" style="color: skyblue;width: 25px;"></i>
-                                    <p>
-
-                                        |Akun
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="?page=data_jurnal" class="nav-link">
-                                    <i class="fas fa-file-alt" style="color: skyblue;width: 25px;"></i>
-                                    <p>
-
-                                        |Jurnal Umum
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="?page=lihat_BB" class="nav-link">
-                                    <i class="fas fa-book" style="color: skyblue;width: 25px;"></i>
-                                    <p>
-
-                                        |Buku Besar
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="?page=lihat_neraca" class="nav-link">
-                                    <i class="fas fa-balance-scale-left" style="color: skyblue;width: 25px;"></i>
-                                    <p>
-                                        |Neraca Saldo
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="?page=#" class="nav-link">
-                                    <i class="fas fa-chess-board" style="color: skyblue;width: 25px;"></i>
-                                    <p>
-
-                                        |Laporan Keuangan
-                                    </p>
-                                </a>
-                            </li>
-
                             <li class=" nav-item has-treeview">
                                 <a href="#" class=" nav-link">
                                     <i class="fas fa-users" style="color: skyblue;width: 25px;"></i>
@@ -306,7 +257,25 @@ include "inc/rupiah.php";
 
                             </li>
 
+                            <li class="nav-item">
+                                <a href="?page=akun_data_rekap" class="nav-link">
+                                    <i class="fas fa-campground" style="color: skyblue;width: 25px;"></i>
+                                    <p>
 
+                                        |Akun
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="?page=data_jurnal" class="nav-link">
+                                    <i class="fas fa-file-alt" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+
+                                        |Jurnal Umum
+                                    </p>
+                                </a>
+                            </li>
 
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
@@ -330,25 +299,53 @@ include "inc/rupiah.php";
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="?page=tanaman_penjualan" class="nav-link">
+                                        <a href="?page=list_penjualan" class="nav-link">
                                             <i class="nav-icon far fa-circle text-success"></i>
                                             <p>Penjualan Tanaman</p>
                                         </a>
                                     </li>
-                                    <!-- <li class="nav-item">
-                                        <a href="?page=o_data_km" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-danger"></i>
-                                            <p>Pengembalian Tanaman</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=rekap_km" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-primary"></i>
-                                            <p>Rekap Kas Masjid</p>
-                                        </a>
-                                    </li> -->
+
                                 </ul>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="?page=lihat_BB" class="nav-link">
+                                    <i class="fas fa-book" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+
+                                        |Buku Besar
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="?page=lihat_neraca" class="nav-link">
+                                    <i class="fas fa-balance-scale-left" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+                                        |Neraca Saldo
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class=" nav-item has-treeview">
+                                <a href="#" class=" nav-link">
+                                    <i class="fas fa-donate" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+                                        |Lihat Laporan
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class=" nav nav-treeview">
+                                    <li class=" nav-item">
+                                        <a href="?page=lap_io_tanaman" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-secondary"></i>
+                                            <p>Transaksi Tanaman</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
 
                             <!-- <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
@@ -405,7 +402,7 @@ include "inc/rupiah.php";
 
 
                         </ul>
-                        </li>
+
                         <?php
                         }
                 ?>
@@ -467,11 +464,14 @@ include "inc/rupiah.php";
                                 // &========= Tanaman=======
                                 
                                 // * Tanaman penjualan
-                            case 'tanaman_penjualan':
+                            case 'list_penjualan':
+                                include "pegawai/tanaman/penjualan/list_penjualan.php";
+                                break; 
+                            case 'data_penjualan':
                                 include "pegawai/tanaman/penjualan/data_penjualan.php";
                                 break;
-                            case 'add_penjualan':
-                                include "";
+                            case 'add_penjualan': //*gk dipake
+                                include "pegawai/tanaman/penjualan/add_penjualan.php";
                                 break;
                                 
                                 // *List Tanaman
@@ -640,6 +640,15 @@ include "inc/rupiah.php";
                                     break;
                                 case 'neraca_detail':
                                     include "pegawai/neraca_saldo/neraca_detail.php";
+                                    break;
+
+                                // &======= Laporan =======
+                                
+                                case 'lap_io_tanaman':
+                                    include "pegawai/laporan/lap_io_tanaman.php";
+                                    break;
+                                case 'lap_laba-rugi':
+                                    include "pegawai/laporan/lap_laba-rugi.php";
                                     break;
                                 
                                 // # default
