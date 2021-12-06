@@ -210,6 +210,9 @@ while ($data = $sql->fetch_assoc()) {
                                                     value=" <?= $data['id_tanaman'] ?>" readonly>
                                                 <input type="hidden" class=" form-control" name=" stok_keluar"
                                                     value=" <?= $data['stok_keluar'] ?>" readonly>
+                                                <input type="hidden" class=" form-control" name=" harga_jual"
+                                                    value=" <?= $data['harga_jual'] ?>" readonly>
+
 
                                                 <div class=" form-group row m-2 dropdown">
                                                     <label class="col-sm-3 col-form-label">Customer: </label>
@@ -343,6 +346,14 @@ while ($data = $sql->fetch_assoc()) {
         if (isset($_POST['Jual'])) {
             
             $inputStokKeluar = $_POST['jumlah_pembelian'];
+            $hargaJual = $_POST['harga_jual'];
+
+            $sql_jurnal = "INSERT INTO `jurnal`(`id_akun`, `debit`, `kredit`, `id_bulan`, `tanggal`, `deskripsi`) 
+            VALUES
+            ('111',   '".$inputStokKeluar."' * '".$hargaJual."',  '0', '2','12' ,'Penjualan bunga'      ),
+            ('411', '0',  '".$inputStokKeluar."' * '".$hargaJual."', '2', '12','Penjualan bunga'        )
+            ";
+            $query_jurnal = mysqli_query($koneksi,$sql_jurnal);
 
             $sql_simpan = "INSERT INTO `penjualan_tanaman`
                             (`id_tanaman`, `jumlah_pembelian`, `id_customer`, `tgl_pesan`, `tgl_kirim`) 
@@ -361,7 +372,7 @@ while ($data = $sql->fetch_assoc()) {
 
             mysqli_close($koneksi);
 
-            if ($query_ubah and $query_simpan) {
+            if ($query_ubah and $query_simpan and $query_jurnal) {
                 echo "<script>
                 Swal.fire({title: 'Add Penjualan Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
                 }).then((result) => {if (result.value){

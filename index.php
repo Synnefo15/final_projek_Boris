@@ -343,6 +343,14 @@ include "inc/rupiah.php";
                                         </a>
                                     </li>
                                 </ul>
+                                <ul class=" nav nav-treeview">
+                                    <li class=" nav-item">
+                                        <a href="?page=lap_laba-rugi" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-red"></i>
+                                            <p>Laba Rugi</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
 
