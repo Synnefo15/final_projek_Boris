@@ -108,7 +108,7 @@ include "inc/rupiah.php";
                             <?php
                         if ($data_level == "Administrator") {
                         ?>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="http://localhost:8080/final_projek_Boris/" class="nav-link">
                                     <i class="fas fa-chess-board"></i>
                                     <p>
@@ -197,6 +197,142 @@ include "inc/rupiah.php";
                                         <a href="?page=lap_sosial" class="nav-link">
                                             <i class="nav-icon far fa-circle text-info"></i>
                                             <p>Rekap Kas Sosial</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="http://localhost:8080/final_projek_Boris/" class="nav-link">
+                                    <i class="fas fa-home" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+
+                                        |Home
+                                        <span class="badge badge-warning right">info</span>
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class=" nav-item has-treeview">
+                                <a href="#" class=" nav-link">
+                                    <i class="fas fa-users" style="color: skyblue;width: 25px;"></i>
+                                    <p>|Person
+                                        <i class="fas fa-angle-left right"></i>
+
+                                    </p>
+
+                                </a>
+                                <ul class=" nav nav-treeview">
+                                    <li class=" nav-item">
+                                        <a href="?page=rekap_data_pelanggan" class=" nav-link">
+                                            <i class=" nav-icon fas fa-angle-double-right text-primary"></i>
+
+                                            <p>Data Pelanggan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class=" nav nav-treeview">
+                                    <li class=" nav-item">
+                                        <a href="?page=rekap_data_supplier" class=" nav-link">
+                                            <i class=" nav-icon fas fa-angle-double-right text-primary"></i>
+
+                                            <p>Data Supplier</p>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="?page=akun_data_rekap" class="nav-link">
+                                    <i class="fas fa-campground" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+
+                                        |Akun
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="?page=data_jurnal" class="nav-link">
+                                    <i class="fas fa-file-alt" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+
+                                        |Jurnal Umum
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class=" nav-icon fas fa-seedling" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+                                        |Tanaman
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="?page=daftar_tanaman" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-secondary"></i>
+                                            <p>Daftar Tanaman</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="?page=list_tanaman_masuk" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-warning"></i>
+                                            <p>Tanaman Masuk</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="?page=list_penjualan" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-success"></i>
+                                            <p>Penjualan Tanaman</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="?page=lihat_BB" class="nav-link">
+                                    <i class="fas fa-book" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+
+                                        |Buku Besar
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="?page=lihat_neraca" class="nav-link">
+                                    <i class="fas fa-balance-scale-left" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+                                        |Neraca Saldo
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class=" nav-item has-treeview">
+                                <a href="#" class=" nav-link">
+                                    <i class="fas fa-donate" style="color: skyblue;width: 25px;"></i>
+                                    <p>
+                                        |Lihat Laporan
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class=" nav nav-treeview">
+                                    <li class=" nav-item">
+                                        <a href="?page=lap_io_tanaman" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-secondary"></i>
+                                            <p>Transaksi Tanaman</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class=" nav nav-treeview">
+                                    <li class=" nav-item">
+                                        <a href="?page=lap_laba-rugi" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-red"></i>
+                                            <p>Laba Rugi</p>
                                         </a>
                                     </li>
                                 </ul>

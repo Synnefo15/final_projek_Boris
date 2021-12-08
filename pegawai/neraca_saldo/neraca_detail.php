@@ -1,7 +1,7 @@
 <?php 
     if (isset($_GET['bulan'])) {
         $sql_cek = "SELECT * FROM jurnal
-        WHERE id_bulan='".$_GET['bulan']."'";
+        WHERE month(tgl)='".$_GET['bulan']."'";
         $query_cek = mysqli_query($koneksi, $sql_cek);
         $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     }    
@@ -36,7 +36,7 @@
                         $sql = $koneksi->query("SELECT DISTINCT(akun.nama_akun) as nama_akun
                         ,SUM(jurnal.debit) as debit
                         ,SUM(jurnal.kredit) as kredit,
-                        bulan.nama_bulan,
+                        monthname(tgl) as nama_bulan,
                         (CASE
                             WHEN SUM(jurnal.debit) > SUM(jurnal.kredit) THEN SUM(jurnal.debit)-SUM(jurnal.kredit)                         
                             
@@ -47,13 +47,10 @@
                         END) as saldo_kredit                
                         FROM `jurnal` 
                         INNER JOIN akun ON jurnal.id_akun = akun.id_akun 
-                        INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan 
-                        WHERE bulan.nama_bulan='".$_GET['bulan']."' GROUP BY jurnal.id_akun ");
+                        
+                        WHERE monthname(tgl)='".$_GET['bulan']."' GROUP BY jurnal.id_akun ");
                         while ($data = $sql->fetch_assoc()) {
-                            // $sumDebit = $data['debit'];
-                            // $sumKredit = $data['kredit'];
-                            // $saldoDebit=$data['saldo_debit'];
-                            // $saldoKredit=$data['saldo_kredit'];
+                            
                         
                     ?>
                     <tr>
@@ -69,12 +66,12 @@
                     ?>
 
                     <tr>
-                        <td class=" text-bold">Total</td>
+                        <td class=" text-bold">Totall</td>
                         <?php 
                         $sql = $koneksi->query("SELECT SUM(debit) as debit, SUM(kredit) as kredit 
                         FROM jurnal
-                        INNER JOIN bulan ON jurnal.id_bulan = bulan.id_bulan
-                        WHERE bulan.nama_bulan = '".$_GET['bulan']."'");
+                        
+                        WHERE monthname(tgl) = '".$_GET['bulan']."'");
                         while($data = $sql->fetch_assoc()){
                             
                         

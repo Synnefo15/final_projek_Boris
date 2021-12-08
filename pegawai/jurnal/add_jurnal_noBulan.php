@@ -8,13 +8,13 @@
     <form action="" method="post" enctype="multipart/form-data">
         <div class="card-body">
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Tanggal-Bulan</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="tanggal" name="tanggal" required>
+                <label class="col-sm-2 col-form-label">Tanggal</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="tgl" name="tgl" required>
                 </div>
-                <div class="col-sm-2">
+                <!-- <div class="col-sm-2">
                     <input type="number" class="form-control" id="id_bulan" name="id_bulan" required>
-                </div>
+                </div> -->
 
             </div>
 
@@ -89,7 +89,9 @@
 
                     <?php
 
-                    $sql = $koneksi->query("SELECT concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,jurn.id_akun,akun.nama_akun, jurn.debit, jurn.kredit FROM `jurnal` jurn INNER JOIN akun akun ON jurn.id_akun = akun.id_akun INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan ORDER BY jurn.id_jurnal DESC LIMIT 6 ");
+                    $sql = $koneksi->query("SELECT jurn.tgl as tanggal ,jurn.id_akun,akun.nama_akun, jurn.debit, jurn.kredit FROM `jurnal` jurn 
+                    INNER JOIN akun akun ON jurn.id_akun = akun.id_akun 
+                    ORDER BY jurn.id_jurnal DESC LIMIT 6 ");
                     while ($data = $sql->fetch_assoc()) {
 
                     ?>
@@ -127,12 +129,12 @@ if (isset($_POST['Simpan'])) {
     $hasil_kredit = preg_replace("/[^0-9]/", "", $kredit);
 
     //mulai proses simpan data
-    $sql_simpan = "INSERT INTO `jurnal`( `id_akun`, `debit`, `kredit`, `id_bulan`, `tanggal`, `deskripsi`) VALUES (
+    $sql_simpan = "INSERT INTO `jurnal`( `id_akun`, `debit`, `kredit`,  `tgl`, `deskripsi`) VALUES (
         '" . $_POST['id_akun'] . "',
         '" . $hasil_debit . "',
         '" . $hasil_kredit . "',
-        '" . $_POST['id_bulan'] . "',
-        '" . $_POST['tanggal'] . "',
+        
+        '" . $_POST['tgl'] . "',
         '" . $_POST['deskripsi'] . "')";
     $query_simpan = mysqli_query($koneksi, $sql_simpan);
     mysqli_close($koneksi);

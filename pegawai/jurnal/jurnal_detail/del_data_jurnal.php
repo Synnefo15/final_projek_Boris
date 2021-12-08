@@ -1,10 +1,10 @@
 <?php
 if (isset($_GET['kode'],$_GET['id_jurnal'])) {
-    $sql_cek = "SELECT * FROM jurnal WHERE id_bulan='".$_GET['kode']."'";
+    $sql_cek = "SELECT * FROM jurnal WHERE month(tgl)='".$_GET['kode']."'";
     $query_cek = mysqli_query($koneksi, $sql_cek);
     $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     
-    $sql = $koneksi->query("SELECT nama_bulan FROM `bulan` WHERE nama_bulan='".$_GET['kode']."'");
+    $sql = $koneksi->query("SELECT monthname(tgl) as nama_bulan FROM `jurnal` WHERE monthname(tgl)='".$_GET['kode']."'");
 while ($data = $sql->fetch_assoc()) {
     $namaBulan = $data['nama_bulan'];
 }

@@ -2,13 +2,13 @@
 
     if(isset($_GET['kode'])){
         $sql_cek = "SELECT * FROM jurnal 
-        WHERE id_bulan='".$_GET['kode']."'";
+        WHERE monthname(tgl)='".$_GET['kode']."'";
         $query_cek = mysqli_query($koneksi, $sql_cek);
         $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     }
 ?>
 <?php  
-$sql = $koneksi->query("SELECT nama_bulan FROM `bulan` WHERE nama_bulan='".$_GET['kode']."'");
+$sql = $koneksi->query("SELECT monthname(tgl) as nama_bulan FROM `jurnal` WHERE monthname(tgl)='".$_GET['kode']."'");
 while ($data = $sql->fetch_assoc()) {
     $namaBulan = $data['nama_bulan'];
 }
@@ -57,14 +57,14 @@ while ($data = $sql->fetch_assoc()) {
                 <tbody>
                     <?php  
                         
-                        $sql=$koneksi->query("SELECT id_jurnal,concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,
+                        $sql=$koneksi->query("SELECT id_jurnal,tgl as tanggal ,
                         jurn.id_akun,akun.nama_akun, 
                         jurn.debit, jurn.kredit,
                         jurn.deskripsi
                         FROM `jurnal` jurn 
                         INNER JOIN akun akun ON jurn.id_akun = akun.id_akun 
-                        INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan 
-                        WHERE bln.nama_bulan='".$_GET['kode']."'");
+                        
+                        WHERE monthname(tgl)='".$_GET['kode']."'");
                         while ($data = $sql->fetch_assoc()) {                            
                         
                     ?>

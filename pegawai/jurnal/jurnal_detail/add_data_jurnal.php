@@ -1,27 +1,25 @@
 <?php
 
 if (isset($_GET['kode'])) {
-    $sql_cek = "SELECT * FROM jurnal WHERE id_bulan='" . $_GET['kode'] . "'";
+    $sql_cek = "SELECT * FROM jurnal WHERE monthname(tgl)='" . $_GET['kode'] . "'";
     $query_cek = mysqli_query($koneksi, $sql_cek);
     $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
 }
 ?>
 <?php
-$sql = $koneksi->query("SELECT * FROM `bulan` WHERE nama_bulan='" . $_GET['kode'] . "'");
+$sql = $koneksi->query("SELECT monthname(tgl) as nama_bulan FROM `jurnal` WHERE monthname(tgl)='".$_GET['kode']."'");
 while ($data = $sql->fetch_assoc()) {
     $namaBulan = $data['nama_bulan'];
 }
 ?>
 <?php
-$sql = $koneksi->query("SELECT * FROM `bulan` WHERE nama_bulan='" . $_GET['kode'] . "'");
+$sql = $koneksi->query("SELECT month(tgl) as id_bulan FROM `jurnal` WHERE monthname(tgl)='" . $_GET['kode'] . "'");
 while ($data = $sql->fetch_assoc()) {
     $idBulan = $data['id_bulan'];
 }
 ?>
 
-<?php
-// $sql=$koneksi->query("SELECT  akun.nama_akun, `debit`, `kredit`, concat_ws('-',`id_bulan`, `tanggal`) as tanggal , `deskripsi` FROM `jurnal` INNER JOIN akun ON jurnal.id_akun = akun.id_akun WHERE tanggal = '".$_GET['tanggal']."'");
-?>
+
 <div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">
@@ -37,8 +35,8 @@ while ($data = $sql->fetch_assoc()) {
         <div class="card-body">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tanggal</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="tanggal" name="tanggal" required>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="tgl" name="tgl" required>
                 </div>
 
             </div>
@@ -120,14 +118,14 @@ while ($data = $sql->fetch_assoc()) {
 
                     <?php
 
-                    $sql = $koneksi->query("SELECT concat_ws('-',jurn.tanggal,bln.nama_bulan) as tanggal ,
+                    $sql = $koneksi->query("SELECT tgl as tanggal ,
                     jurn.id_akun,akun.nama_akun, 
                     jurn.debit, jurn.kredit,
                     jurn.deskripsi
                     FROM `jurnal` jurn 
                     INNER JOIN akun akun ON jurn.id_akun = akun.id_akun 
-                    INNER JOIN bulan bln ON jurn.id_bulan = bln.id_bulan
-                    WHERE bln.nama_bulan='" . $_GET['kode'] . "' 
+                    
+                    WHERE monthname(tgl)='" . $_GET['kode'] . "' 
                     ORDER BY jurn.id_jurnal DESC LIMIT 6 ");
                     while ($data = $sql->fetch_assoc()) {
 
@@ -167,12 +165,12 @@ if (isset($_POST['Simpan'])) {
     $hasil_kredit = preg_replace("/[^0-9]/", "", $kredit);
 
     //mulai proses simpan data
-    $sql_simpan = "INSERT INTO `jurnal`( `id_akun`, `debit`, `kredit`, `id_bulan`, `tanggal`, `deskripsi`) VALUES (
+    $sql_simpan = "INSERT INTO `jurnal`( `id_akun`, `debit`, `kredit`,  `tgl`, `deskripsi`) VALUES (
         '" . $_POST['id_akun'] . "',
         '" . $hasil_debit . "',
         '" . $hasil_kredit . "',
-        '" . $idBulan . "',
-        '" . $_POST['tanggal'] . "',
+        
+        '" . $_POST['tgl'] . "',
         '" . $_POST['deskripsi'] . "')";
     $query_simpan = mysqli_query($koneksi, $sql_simpan);
     mysqli_close($koneksi);

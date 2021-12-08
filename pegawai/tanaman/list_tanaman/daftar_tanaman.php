@@ -348,10 +348,10 @@ while ($data = $sql->fetch_assoc()) {
             $inputStokKeluar = $_POST['jumlah_pembelian'];
             $hargaJual = $_POST['harga_jual'];
 
-            $sql_jurnal = "INSERT INTO `jurnal`(`id_akun`, `debit`, `kredit`, `id_bulan`, `tanggal`, `deskripsi`) 
+            $sql_jurnal = "INSERT INTO `jurnal`(`id_akun`, `debit`, `kredit`,  `tgl`, `deskripsi`) 
             VALUES
-            ('111',   '".$inputStokKeluar."' * '".$hargaJual."',  '0', '2','12' ,'Penjualan bunga'      ),
-            ('411', '0',  '".$inputStokKeluar."' * '".$hargaJual."', '2', '12','Penjualan bunga'        )
+            ('111'  , '".$inputStokKeluar."' * '".$hargaJual."'   ,  '0'  , '".$_POST['tgl_kirim']."'   ,   'Penjualan bunga'      ),
+            ('411'  , '0'   ,  '".$inputStokKeluar."' * '".$hargaJual."' , '".$_POST['tgl_kirim']."'    ,   'Penjualan bunga'       )
             ";
             $query_jurnal = mysqli_query($koneksi,$sql_jurnal);
 
