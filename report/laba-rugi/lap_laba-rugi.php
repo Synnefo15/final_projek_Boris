@@ -20,8 +20,9 @@
             <tbody>
                 <?php
                 $no = 1;
-                $sql = $koneksi->query("SELECT DISTINCT bln.nama_bulan FROM jurnal jurn 
-                INNER JOIN bulan bln ON jurn.id_bulan=bln.id_bulan");
+                $sql = $koneksi->query("SELECT DISTINCT monthname(tgl) as nama_bulan 
+                FROM jurnal order by month(tgl) asc
+                ");
                 while ($data = $sql->fetch_assoc()) {
 
                 ?>
@@ -30,7 +31,7 @@
                     <td><?= $no++; ?></td>
                     <td><?= $data['nama_bulan']; ?></td>
                     <td>
-                        <a href="?page=BB_detail&bulan=<?php echo $data['nama_bulan']; ?>" title="Detail"
+                        <a href="?page=laba-rugi_view&bulan=<?php echo $data['nama_bulan']; ?>" title="Detail"
                             class=" d-flex justify-content-sm-center btn btn-primary btn-sm">
                             <i class="  fas fa-info-circle"></i>
                         </a>
@@ -44,4 +45,5 @@
             </tbody>
         </table>
     </div>
+
 </div>

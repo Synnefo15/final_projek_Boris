@@ -791,8 +791,13 @@ include "inc/rupiah.php";
                                 case 'lap_io_tanaman':
                                     include "pegawai/laporan/lap_io_tanaman.php";
                                     break;
+
+                                    // * laba rugi
                                 case 'lap_laba-rugi':
-                                    include "pegawai/laporan/lap_laba-rugi.php";
+                                    include "report/laba-rugi/lap_laba-rugi.php";
+                                    break;
+                                case 'laba-rugi_view':
+                                    include "report/laba-rugi/laba-rugi_view.php";
                                     break;
                                 
                                 // # default

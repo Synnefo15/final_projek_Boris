@@ -39,7 +39,7 @@
                     <i class="fa fa-edit"></i> Tambah Data</a> -->
             </div>
             <br>
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped m-2">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -49,7 +49,7 @@
                         <th>Customer</th>
                         <th>Tanggal Pesan</th>
                         <th>Tanggal Kirim</th>
-                        <!-- <th>Aksi</th> -->
+                        <th>Upload Bukti</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,16 +91,9 @@
                         <td><?= $data['tgl_pesan']; ?></td>
                         <td><?= $data['tgl_kirim']; ?></td>
 
+                        <!-- //! Perbaiki -->
                         <td>
-                            <!-- <a href="?page=i_edit_km&kode=<?php echo $data['id_km']; ?>" title="Ubah"
-                                class="btn btn-success btn-sm">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <a href="?page=i_del_km&kode=<?php echo $data['id_km']; ?>"
-                                onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
-                                class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                                </> -->
+                            <input type="submit" name="upBukti" value="Upload Bukti" class="btn btn-info">
                         </td>
                     </tr>
 
