@@ -92,3 +92,7 @@ while ($data = $sql->fetch_assoc()) {
     </div>
 </div>
 <!-- /.card-body -->
+
+<script>
+
+</script>

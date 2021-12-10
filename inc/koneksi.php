@@ -1,3 +1,3 @@
 <?php
-$koneksi = new mysqli ("localhost","root","","final_projek_boris");
+$koneksi = new mysqli ("localhost","root","","db_asosek");
 ?>

@@ -6,7 +6,7 @@ if (isset($_GET['kode'],$_GET['id_jurnal'])) {
     $query_cek = mysqli_query($koneksi, $sql_cek);
     $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     
-    $sql = $koneksi->query("SELECT * FROM `bulan` WHERE nama_bulan='".$_GET['kode']."'");
+    $sql = $koneksi->query("SELECT monthname(tgl) as nama_bulan FROM `jurnal` WHERE monthname(tgl)='".$_GET['kode']."'");
 while ($data = $sql->fetch_assoc()) {
     $namaBulan = $data['nama_bulan'];
 }}
@@ -27,9 +27,9 @@ while ($data = $sql->fetch_assoc()) {
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tanggal</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="tanggal" name="tanggal"
-                        value="<?=$data_cek['tanggal']?>" required />
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="tgl" name="tgl" value="<?=$data_cek['tgl']?>"
+                        required />
                 </div>
 
 
@@ -43,7 +43,8 @@ while ($data = $sql->fetch_assoc()) {
                     style="color: white; " required>
 
                     <option value="<?=$data_cek['id_akun']?>" selected><?= $data_cek['nama_akun']; ?></option>
-                    <?php $sql = "SELECT * FROM akun";
+                    <?php 
+                    $sql = "SELECT * FROM akun";
                     $kueri = mysqli_query($koneksi, $sql);
                     while ($data = mysqli_fetch_array($kueri)) {
 
@@ -108,7 +109,7 @@ while ($data = $sql->fetch_assoc()) {
         id_akun='".$_POST['id_akun']."',
         debit='".$hasil_debit."',
         kredit='".$hasil_kredit."',        
-        tanggal='" . $_POST['tanggal'] . "',
+        tgl='" . $_POST['tgl'] . "',
         deskripsi='" . $_POST['deskripsi'] . "'
         WHERE id_jurnal='".$_POST['id_jurnal']."'";
     $query_ubah = mysqli_query($koneksi, $sql_ubah);
