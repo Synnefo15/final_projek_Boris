@@ -43,7 +43,8 @@ while ($data = $sql->fetch_assoc()) {
                     style="color: white; " required>
 
                     <option value="<?=$data_cek['id_akun']?>" selected><?= $data_cek['nama_akun']; ?></option>
-                    <?php $sql = "SELECT * FROM akun";
+                    <?php 
+                    $sql = "SELECT * FROM akun";
                     $kueri = mysqli_query($koneksi, $sql);
                     while ($data = mysqli_fetch_array($kueri)) {
 

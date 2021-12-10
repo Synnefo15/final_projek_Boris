@@ -617,6 +617,9 @@ include "inc/rupiah.php";
                             case 'add_penjualan': //*gk dipake
                                 include "pegawai/tanaman/penjualan/add_penjualan.php";
                                 break;
+                            case 'upload_foto':
+                                include "pegawai/tanaman/penjualan/upload_foto.php";
+                                break;
                                 
                                 // *List Tanaman
                             case 'daftar_tanaman':

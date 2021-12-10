@@ -103,13 +103,14 @@ while ($data = $sql->fetch_assoc()) {
                                 <i class="fa fa-edit"></i>
                             </a>
 
+                            <!--//&=====Tombol stok masuk==========  -->
                             <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
                                 data-target="#addstok-<?=$data['id_tanaman']?>" title="Add stok"
                                 value="<?=$data['id_tanaman']?>">
                                 <i class="fas fa-cubes"></i>
                             </button>
 
-                            <!-- //&The Modal stok masuk -->
+                            <!-- //&=======The Modal stok masuk========== -->
                             <div class="modal fade" id="addstok-<?=$data['id_tanaman']?>">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -173,14 +174,14 @@ while ($data = $sql->fetch_assoc()) {
                                 </div>
                             </div>
 
-                            <!-- *Tombol Modal jual -->
+                            <!-- //&==========Tombol Modal jual========== -->
                             <button type="button" class="btn btn-sm btn-info" data-toggle="modal"
                                 data-target="#addJual-<?=$data['id_tanaman']?>" title="Jual"
                                 value="<?=$data['id_tanaman']?>">
                                 <i class="fas fa-money-check-alt"></i>
                             </button>
 
-                            <!-- //&The Modal Jual -->
+                            <!-- //&==========The Modal Jual================ -->
                             <div class="modal fade" id="addJual-<?=$data['id_tanaman']?>">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -299,7 +300,7 @@ while ($data = $sql->fetch_assoc()) {
         </div>
     </div>
 </div>
-
+<!-- //*======Stok masuk=========== -->
 <?php 
         if (isset($_POST['Submit'])) {
             
@@ -341,6 +342,7 @@ while ($data = $sql->fetch_assoc()) {
         }
     
     ?>
+<!-- //*======Jual============ -->
 <?php 
 
         if (isset($_POST['Jual'])) {
